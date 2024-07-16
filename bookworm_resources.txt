@@ -1,0 +1,6 @@
+https://www.youtube.com/watch?v=bsZKDIaij-A                (How to Program Web App Using Google Book API 1: HTML by root tech)
+https://developers.google.com/books/docs/viewer/developers_guide
+https://developers.google.com/books/docs/overview
+
+Note: Google Books Embedded API works best in Google Chrome or Chromium browsers. There have been issues with it not displaying
+all pages in books when being run on Firefox.
