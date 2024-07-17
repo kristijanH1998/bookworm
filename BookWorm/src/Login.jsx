@@ -1,4 +1,5 @@
 // import React from "react"
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Login() {
     return (
@@ -17,7 +18,7 @@ export default function Login() {
                 <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
             </div>
             <button type="submit" className="btn mb-4">Sign In</button>
-            <button type="button" className="btn">Register</button>
+            <Link type="button" to="/register" className="btn">Register</Link>   
         </form>
     )
 }

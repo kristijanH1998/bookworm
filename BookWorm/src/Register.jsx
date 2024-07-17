@@ -1,3 +1,5 @@
+import { Link, useNavigate } from 'react-router-dom';
+
 export default function Register() {
     return (
         <form className="d-flex flex-column align-items-center">
@@ -35,7 +37,9 @@ export default function Register() {
                 <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
             </div>
             <button type="submit" className="btn mb-4">Create Account</button>
-            <button type="button" className="btn">Back to Login</button>
+            {/* <button type="button" className="btn">Back to Login</button> */}
+            <Link type="button" to="/" className="btn">Back to Login</Link>   
+
         </form>
     )
 }
