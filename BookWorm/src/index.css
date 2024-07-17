@@ -1,1 +1,25 @@
+* {
+    box-sizing: border-box;
+    font-family: Inter;
+}
+body {
+    background-image: url("/books-wallpaper.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.btn {
+    background-color: #F4A460;
+    color: white;
+}
+.btn:hover {
+    background-color:#ffd0a7;
+    transition: 0.5s;
+}
 
+form {
+    font-size: large;
+    background-color: rgb(255 255 255 / 90%);
+    border-radius: 10px;
+    padding: 4rem;
+}
