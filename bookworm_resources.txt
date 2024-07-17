@@ -25,3 +25,4 @@ https://www.codeply.com/p/zU0EWDmIfn
 Error: can't resolve 'react-router-dom': https://stackoverflow.com/questions/53914013/failed-to-compile-module-not-found-cant-resolve-react-router-dom
 
 https://www.w3schools.com/html/html_form_input_types.asp
+https://getbootstrap.com/docs/5.3/utilities/sizing/#relative-to-the-parent
