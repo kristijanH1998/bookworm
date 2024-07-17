@@ -11,6 +11,7 @@ body {
 .btn {
     background-color: #F4A460;
     color: white;
+    font-size: large;
 }
 .btn:hover {
     background-color:#ffd0a7;

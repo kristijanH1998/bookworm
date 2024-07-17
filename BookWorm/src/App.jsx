@@ -1,10 +1,9 @@
-import Login from "./Login.jsx"
+import PageRouter from './PageRouter.jsx'
+
 
 function App() {
   return (  
-      <div>
-        <Login />
-      </div>
+    <PageRouter />
   )
 }
 
