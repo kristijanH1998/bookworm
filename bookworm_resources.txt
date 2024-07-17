@@ -4,3 +4,24 @@ https://developers.google.com/books/docs/overview
 
 Note: Google Books Embedded API works best in Google Chrome or Chromium browsers. There have been issues with it not displaying
 all pages in books when being run on Firefox.
+
+sources:
+https://getbootstrap.com/docs/5.3/forms/overview/
+
+background wallpaper: https://www.canva.com/templates/EAFm9cdFi94-bright-cartoon-green-and-brown-school-books-pattern-desktop-wallpaper/
+button styling: https://www.freecodecamp.org/news/css-button-style-hover-color-and-background/
+colors: https://www.w3schools.com/cssref/css_colors.php
+https://developer.mozilla.org/en-US/docs/Learn/CSS/Howto/Make_box_transparent
+https://www.w3schools.com/cssref/css3_pr_opacity.php
+https://www.w3schools.com/html/html_formatting.asp
+https://onlinepngtools.com/change-png-opacity
+
+Some frontend ideas and implementations (navbar router,...) taken from:
+https://github.com/kristijanH1998/dev-duckies-sm-proj-front.git
+
+date picker (Bootstrap): https://stackoverflow.com/questions/68662850/datepicker-bootstrap-5
+https://www.codeply.com/p/zU0EWDmIfn
+
+Error: can't resolve 'react-router-dom': https://stackoverflow.com/questions/53914013/failed-to-compile-module-not-found-cant-resolve-react-router-dom
+
+https://www.w3schools.com/html/html_form_input_types.asp
