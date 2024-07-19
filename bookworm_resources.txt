@@ -26,3 +26,7 @@ Error: can't resolve 'react-router-dom': https://stackoverflow.com/questions/539
 
 https://www.w3schools.com/html/html_form_input_types.asp
 https://getbootstrap.com/docs/5.3/utilities/sizing/#relative-to-the-parent
+
+Backend endpoint and middleware logic referenced from: https://github.com/ConnorBstill/module-4-express-api.git
+
+https://jwt.io/
