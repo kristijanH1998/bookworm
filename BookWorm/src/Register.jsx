@@ -137,7 +137,6 @@ export default function Register() {
             )}
             {/* <button type="button" className="btn">Back to Login</button> */}
             <Link type="button" to="/" className="btn">Back to Login</Link>   
-
         </form>
     )
 }
