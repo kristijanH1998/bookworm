@@ -30,3 +30,8 @@ https://getbootstrap.com/docs/5.3/utilities/sizing/#relative-to-the-parent
 Backend endpoint and middleware logic referenced from: https://github.com/ConnorBstill/module-4-express-api.git
 
 https://jwt.io/
+
+https://stackoverflow.com/questions/33673946/error-duplicate-entry-for-key-email
+https://dev.mysql.com/doc/refman/8.4/en/datetime.html
+https://stackoverflow.com/questions/60561207/date-format-in-mysql-database-and-html-input-type-date-do-not-match-how-do-i
+https://www.geeksforgeeks.org/mysql-date-data-type/
