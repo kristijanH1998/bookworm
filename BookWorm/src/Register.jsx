@@ -91,9 +91,6 @@ export default function Register() {
 
     return (
         <form onSubmit={handleSubmit} className="d-flex flex-column align-items-center">
-            {error && (
-                <div>{error}</div>
-            )}
             <h1 className="mb-5"><b>Register</b></h1>
             <div className="mb-3 d-flex flex-column align-items-center">
                 <label htmlFor="email" className="form-label">Email address</label>
@@ -135,6 +132,9 @@ export default function Register() {
                 <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
             </div> */}
             <button type="submit" className="btn mb-4">Create Account</button>
+            {error && (
+                <div>{error}</div>
+            )}
             {/* <button type="button" className="btn">Back to Login</button> */}
             <Link type="button" to="/" className="btn">Back to Login</Link>   
 
