@@ -26,7 +26,8 @@ export default function Login() {
             } 
           })
           .catch((error) => {
-            setError("Failed to login. Please try again.");
+            console.log(error.response.data.error)
+            setError(error.response.data.error);
           });
       };
 
@@ -47,8 +48,8 @@ export default function Login() {
                 <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
                 <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
             </div> */}
-            <button type="submit" className="btn mb-4">Sign In</button>
-            {error && (<div>{error}</div>)}
+            <button type="submit" className="btn mb-2">Sign In</button>
+            {error && (<div className="mb-2">{error}</div>)}
             <Link type="button" to="/register" className="btn">Register</Link>   
         </form>
     )
