@@ -53,41 +53,32 @@ export default function Register() {
             lastName: lastName,
             dateOfBirth: dateOfBirth,
         })
-        .then((res) => {
-            axios
-            .post("http://localhost:3000/log-in", { email, password })
-            // .then((res) => {
-            //     axios
-            //     .put("http://localhost:8080/profile/archive")
-            //     .catch((error) => {
-            //         console.log(error.response.data.error);
-            //     });
-            // })
-            .then((res) => {
-                localStorage.setItem("jwt", res.data.jwt);
-                // console.log(res.data.jwt)
-                navigate("/home");
-            })
-            .catch((error) => {
-                console.log(error.response.data.error);
-            });
+        .then((regRes) => {
+            if(regRes.data.success) {
+                axios.post("http://localhost:3000/log-in", { email, password })
+                // .then((res) => {
+                //     axios
+                //     .put("http://localhost:8080/profile/archive")
+                //     .catch((error) => {
+                //         console.log(error.response.data.error);
+                //     });
+                // })
+                .then((logRes) => {
+                    if (logRes.data.success) {
+                        localStorage.setItem("jwt", logRes.data.jwt);
+                        // console.log(res.data.jwt)
+                        navigate("/home");
+                    }
+                })
+                .catch((error) => {
+                    console.log(error.response.data.error);
+                    setError(error.response.data.error);
+                });
+            }
         })
         .catch((error) => {
-            // if (error.response) {
-            // if (
-            //     error.response.status === 400 &&
-            //     error.response.data.error === "User already exists..."
-            // ) {
-            //     setError("Email is already in use.");
-            // } else if (error.response.status === 400) {
-            //     setError("Invalid registration details.");
-            // } else {
-            //     setError("Username is taken.");
-            // }
-            // } else {
-            // setError("Failed to register. Please try again later.");
-            // }
-            console.log(error.response.data.error);
+            setError(error.response.data.error)
+            console.log(error.response);
         });
     };
 
@@ -133,10 +124,8 @@ export default function Register() {
                 <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
                 <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
             </div> */}
-            <button type="submit" className="btn mb-4">Create Account</button>
-            {error && (
-                <div>{error}</div>
-            )}
+            <button type="submit" className="btn mb-2">Create Account</button>
+            {error && (<div className="mb-2">{error}</div>)}
             {/* <button type="button" className="btn">Back to Login</button> */}
             <Link type="button" to="/" className="btn">Back to Login</Link>   
         </form>
