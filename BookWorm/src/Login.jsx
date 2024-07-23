@@ -21,7 +21,9 @@ export default function Login() {
         axios
           .post("http://localhost:3000/log-in", { email, password })
           .then((res) => {
+            // console.log(res.data.jwt)
             if (res.data.success) {
+                localStorage.setItem("jwt", res.data.jwt);
                 navigate("/home");
             } 
           })

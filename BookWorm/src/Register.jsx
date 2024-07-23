@@ -64,6 +64,8 @@ export default function Register() {
             //     });
             // })
             .then((res) => {
+                localStorage.setItem("jwt", res.data.jwt);
+                // console.log(res.data.jwt)
                 navigate("/home");
             })
             .catch((error) => {
