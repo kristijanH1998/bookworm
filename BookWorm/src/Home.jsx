@@ -6,7 +6,13 @@ export default function Home() {
     const handleClick = (event) => {
         event.preventDefault();
         // console.log("You clicked" + event.target)
-        let jwt = localStorage.getItem("jwt");
+        let jwt;
+        if(localStorage.getItem("jwt")) {
+            jwt = localStorage.getItem("jwt");
+        } else {
+            console.log("You are not signed in.");
+            return;
+        }
         // console.log(jwt)
         axios
             .get("http://localhost:3000/log-out", {headers: {"authorization": "Bearer " + jwt}})
