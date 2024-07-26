@@ -35,3 +35,8 @@ https://stackoverflow.com/questions/33673946/error-duplicate-entry-for-key-email
 https://dev.mysql.com/doc/refman/8.4/en/datetime.html
 https://stackoverflow.com/questions/60561207/date-format-in-mysql-database-and-html-input-type-date-do-not-match-how-do-i
 https://www.geeksforgeeks.org/mysql-date-data-type/
+https://www.tiny.cloud/blog/javascript-localstorage/
+https://dev.to/codeanddeploy/check-if-email-address-is-already-exists-in-the-database-4jf7
+https://developer.mozilla.org/en-US/docs/Web/API/Storage/removeItem
+https://developer.mozilla.org/en-US/docs/Web/API/Storage/getItem
+https://stackoverflow.com/questions/44617825/passing-headers-with-axios-post-request
