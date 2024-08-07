@@ -40,3 +40,9 @@ https://dev.to/codeanddeploy/check-if-email-address-is-already-exists-in-the-dat
 https://developer.mozilla.org/en-US/docs/Web/API/Storage/removeItem
 https://developer.mozilla.org/en-US/docs/Web/API/Storage/getItem
 https://stackoverflow.com/questions/44617825/passing-headers-with-axios-post-request
+
+Migrating from JS to TS:
+https://dev.to/rashidshamloo/migrating-a-vite-react-app-from-javascript-to-typescript-5dmn
+https://flaviocopes.com/fix-tsconfig-json-no-inputs-found/
+https://stackoverflow.com/questions/41211566/tsconfig-json-buildno-inputs-were-found-in-config-file
+https://github.com/ConnorBstill/cars-front-end
