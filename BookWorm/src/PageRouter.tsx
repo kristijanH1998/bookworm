@@ -5,9 +5,10 @@ import {
     RouterProvider
 } from "react-router-dom"
 
-import Login from "./Login.jsx"
+import Login from "./Login.js"
 import Register from "./Register.jsx"
-import Home from "./Home.jsx"
+import Home from "./Home.js"
+import React from "react";
 
 const router = createBrowserRouter(
 createRoutesFromElements(

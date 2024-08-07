@@ -1,12 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
+import React from 'react';
 
 export default function Home() {
     const navigate = useNavigate();
-    const handleClick = (event) => {
+    const handleClick = (event: any) => {
         event.preventDefault();
         // console.log("You clicked" + event.target)
-        let jwt;
+        let jwt: any;
         if(localStorage.getItem("jwt")) {
             jwt = localStorage.getItem("jwt");
         } else {
@@ -29,7 +30,7 @@ export default function Home() {
     return (
         <>
         <h1>Home Page</h1>
-        <Link type="button" onClick={handleClick} className="btn">Sign Out</Link>
+        <Link type="button" onClick={handleClick} className="btn" to={''}>Sign Out</Link>
         </>    
     )
 }

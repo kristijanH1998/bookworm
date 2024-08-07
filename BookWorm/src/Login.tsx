@@ -2,6 +2,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios'
+import React from 'react';
 
 export default function Login() {
 
@@ -16,7 +17,7 @@ export default function Login() {
         setError("");
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: any) => {
         e.preventDefault();
         axios
           .post("http://localhost:3000/log-in", { email, password })

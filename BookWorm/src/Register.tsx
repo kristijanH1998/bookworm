@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from "axios";
+import React from 'react';
 
 export default function Register() {
     const [email, setEmail] = useState('');
@@ -22,13 +23,13 @@ export default function Register() {
     const lastNameValid = lastName.trim() !== "";
 
     // Handles input changes and saves it to state
-    const handleChange = (setState) => (event) => {
+    const handleChange = (setState: any) => (event: any) => {
         setState(event.target.value);
         setError("");
     };
 
     // Handles form submission
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: any) => {
         e.preventDefault();
         if (
         !(
