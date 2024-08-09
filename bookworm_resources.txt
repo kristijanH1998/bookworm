@@ -1,6 +1,7 @@
 https://www.youtube.com/watch?v=bsZKDIaij-A                (How to Program Web App Using Google Book API 1: HTML by root tech)
 https://developers.google.com/books/docs/viewer/developers_guide
 https://developers.google.com/books/docs/overview
+https://developers.google.com/books/docs/v1/performance
 
 Note: Google Books Embedded API works best in Google Chrome or Chromium browsers. There have been issues with it not displaying
 all pages in books when being run on Firefox.
@@ -46,3 +47,6 @@ https://dev.to/rashidshamloo/migrating-a-vite-react-app-from-javascript-to-types
 https://flaviocopes.com/fix-tsconfig-json-no-inputs-found/
 https://stackoverflow.com/questions/41211566/tsconfig-json-buildno-inputs-were-found-in-config-file
 https://github.com/ConnorBstill/cars-front-end
+
+https://stackoverflow.com/questions/4810841/pretty-print-json-using-javascript
+https://stackoverflow.com/questions/10514873/line-continuation-characters-in-javascript
