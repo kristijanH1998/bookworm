@@ -50,3 +50,5 @@ https://github.com/ConnorBstill/cars-front-end
 
 https://stackoverflow.com/questions/4810841/pretty-print-json-using-javascript
 https://stackoverflow.com/questions/10514873/line-continuation-characters-in-javascript
+https://stackoverflow.com/questions/1011317/replace-a-value-if-null-or-undefined-in-javascript
+https://www.geeksforgeeks.org/how-to-add-bearer-token-authentication-in-postman/
