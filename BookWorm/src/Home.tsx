@@ -1,25 +1,41 @@
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import React from 'react';
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 
 export default function Home() {
     const [searchPlaceholder, setSearchPlaceholder] = useState("title");
+    const [jwt, setJwt] = useState<string | null>("");
+    const [searchPhrase, setSearchPhrase] = useState<string>("");
+
+    useEffect(() => {
+        acquireJwt();
+    },[])
+
+    function acquireJwt () {
+        if(localStorage.getItem("jwt")) {
+            let temp = localStorage.getItem("jwt")
+            setJwt(temp);
+            // console.log(jwt)
+        } else {
+            console.log("You are not signed in.");
+            return;
+        }
+    }
+
     const onRadioChange = (e: any) => {
         setSearchPlaceholder(e.target.value)
+    }
+
+    const handlePhraseChange = (event: any) => {
+        setSearchPhrase(event.target.value);
     }
 
     const navigate = useNavigate();
     const handleClick = (event: any) => {
         event.preventDefault();
-        // console.log("You clicked" + event.target)
-        let jwt: any;
-        if(localStorage.getItem("jwt")) {
-            jwt = localStorage.getItem("jwt");
-        } else {
-            console.log("You are not signed in.");
-            return;
-        }
+        acquireJwt();
         // console.log(jwt)
         axios
             .get("http://localhost:3000/log-out", {headers: {"authorization": "Bearer " + jwt}})
@@ -32,7 +48,25 @@ export default function Home() {
             .catch((error) => {
                 console.log(error.response.data.error)
             });
-    }
+    };
+
+    const handleSearch = (event: any) => {
+        event.preventDefault();
+        acquireJwt();
+        console.log(searchPhrase)
+        axios
+            .get("http://localhost:3000/search-books", {headers: {"authorization": "Bearer " + jwt}, params: {"search-terms": searchPhrase, criteria: "isbn"}})
+            .then((res) => {
+                if (res.data.success) {
+                    console.log(res.data)
+                } 
+            })
+            .catch((error) => {
+                console.log(error.response.data.error)
+            });
+
+    };
+
     return (
         <form id="searchPage" className="d-flex flex-column align-items-center w-50">
             <h1>Search Books</h1>
@@ -55,11 +89,12 @@ export default function Home() {
             </div>
             
             <div className="input-group mb-3">
-                <input type="text" className="form-control" placeholder={"Enter book " + searchPlaceholder} aria-label="Enter book parameters" aria-describedby="button-addon2"/>
-                <button className="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                <input type="text" className="form-control" value={searchPhrase}
+                    onChange={event => handlePhraseChange(event)} placeholder={"Enter book " + searchPlaceholder} aria-label="Enter book parameters" aria-describedby="button-addon2"/>
+                <button className="btn" type="button" onClick={handleSearch} id="searchBtn">Search</button>
             </div>
 
-            {/* <Link type="button" onClick={handleClick} className="btn" to={''}>Sign Out</Link> */}
+            <Link type="button" onClick={handleClick} className="btn" to={''}>Sign Out</Link>
         </form>    
     )
 }

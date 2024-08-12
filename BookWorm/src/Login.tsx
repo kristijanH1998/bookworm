@@ -12,7 +12,7 @@ export default function Login() {
     const navigate = useNavigate();
 
     // Handles input changes and saves it to state
-    const handleChange = (setState) => (event) => {
+    const handleChange = (setState: any) => (event: any) => {
         setState(event.target.value);
         setError("");
     };
