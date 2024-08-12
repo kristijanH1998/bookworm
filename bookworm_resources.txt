@@ -26,7 +26,6 @@ https://www.codeply.com/p/zU0EWDmIfn
 Error: can't resolve 'react-router-dom': https://stackoverflow.com/questions/53914013/failed-to-compile-module-not-found-cant-resolve-react-router-dom
 
 https://www.w3schools.com/html/html_form_input_types.asp
-https://getbootstrap.com/docs/5.3/utilities/sizing/#relative-to-the-parent
 
 Backend endpoint and middleware logic referenced from: https://github.com/ConnorBstill/module-4-express-api.git
 
@@ -52,3 +51,17 @@ https://stackoverflow.com/questions/4810841/pretty-print-json-using-javascript
 https://stackoverflow.com/questions/10514873/line-continuation-characters-in-javascript
 https://stackoverflow.com/questions/1011317/replace-a-value-if-null-or-undefined-in-javascript
 https://www.geeksforgeeks.org/how-to-add-bearer-token-authentication-in-postman/
+
+https://learning.postman.com/docs/sending-requests/authorization/authorization-types/
+https://stackoverflow.com/questions/24709944/sending-jwt-token-in-the-headers-with-postman
+https://learning.postman.com/docs/sending-requests/variables/variables/
+https://stackoverflow.com/questions/3794919/replace-all-spaces-in-a-string-with
+https://getbootstrap.com/docs/5.3/utilities/sizing/
+https://getbootstrap.com/docs/5.3/forms/input-group/
+https://getbootstrap.com/docs/5.3/forms/checks-radios/
+https://dev.to/collegewap/how-to-work-with-radio-buttons-in-react-3e0o
+https://dev.to/dwjohnston/react-usestate-argument-of-type-string-is-not-assignable-to-parameter-of-type-setstateaction-undefined-27po
+https://stackoverflow.com/questions/50819162/why-is-my-function-being-called-twice-in-react
+https://stackoverflow.com/questions/63906002/update-a-state-variable-only-on-loading-the-page-for-the-first-time-in-react-js
+https://apidog.com/blog/axios-get-with-body-and-header/
+https://stackoverflow.com/questions/61551137/how-to-send-body-data-and-headers-with-axios-get-request
