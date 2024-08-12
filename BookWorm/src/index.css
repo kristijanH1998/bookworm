@@ -27,3 +27,7 @@ form {
     max-width: 100vw;
     overflow: scroll;
 }
+
+h1 {
+    color: rgb(244, 164, 96);
+}
