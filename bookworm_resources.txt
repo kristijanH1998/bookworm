@@ -65,3 +65,8 @@ https://stackoverflow.com/questions/50819162/why-is-my-function-being-called-twi
 https://stackoverflow.com/questions/63906002/update-a-state-variable-only-on-loading-the-page-for-the-first-time-in-react-js
 https://apidog.com/blog/axios-get-with-body-and-header/
 https://stackoverflow.com/questions/61551137/how-to-send-body-data-and-headers-with-axios-get-request
+https://stackoverflow.com/questions/27530462/tag-error-react-jsx-style-tag-error-on-render
+https://dev.to/collegewap/how-to-render-array-of-components-in-react-fma
+https://react.dev/learn/rendering-lists
+https://react.dev/learn/passing-props-to-a-component
+https://getbootstrap.com/docs/5.3/components/card/
