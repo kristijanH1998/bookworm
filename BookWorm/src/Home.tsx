@@ -2,12 +2,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import React from 'react';
 import { useState, useEffect } from "react";
-
+import BookCard from "./elementaryComponents/bookCard.tsx"
 
 export default function Home() {
     const [searchPlaceholder, setSearchPlaceholder] = useState("title");
     const [jwt, setJwt] = useState<string | null>("");
     const [searchPhrase, setSearchPhrase] = useState<string>("");
+    const [bookList, setBookList] = useState<object[]>([]);
 
     useEffect(() => {
         acquireJwt();
@@ -55,10 +56,12 @@ export default function Home() {
         acquireJwt();
         console.log(searchPhrase)
         axios
-            .get("http://localhost:3000/search-books", {headers: {"authorization": "Bearer " + jwt}, params: {"search-terms": searchPhrase, criteria: "isbn"}})
+            .get("http://localhost:3000/search-books", {headers: {"authorization": "Bearer " + jwt}, params: {"search-terms": searchPhrase, criteria: searchPlaceholder}})
             .then((res) => {
                 if (res.data.success) {
-                    console.log(res.data)
+                    console.log(typeof res.data.data.items)
+                    setBookList(res.data.data.items)
+                    console.log(bookList)
                 } 
             })
             .catch((error) => {
@@ -68,7 +71,7 @@ export default function Home() {
     };
 
     return (
-        <form id="searchPage" className="d-flex flex-column align-items-center w-50">
+        <form id="searchPage" className="d-flex flex-column align-items-center w-75">
             <h1>Search Books</h1>
             <div className="d-flex flex-row m-3">
                 <div className="form-check form-check-inline">
@@ -82,8 +85,8 @@ export default function Home() {
                     <label className="form-check-label" htmlFor="inlineRadio2">Author</label>
                 </div>
                 <div className="form-check form-check-inline">
-                    <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="ISBN"
-                    checked={searchPlaceholder === "ISBN"} onChange={onRadioChange}/>
+                    <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="isbn"
+                    checked={searchPlaceholder === "isbn"} onChange={onRadioChange}/>
                     <label className="form-check-label" htmlFor="inlineRadio3">ISBN</label>
                 </div>
             </div>
@@ -95,6 +98,12 @@ export default function Home() {
             </div>
 
             <Link type="button" onClick={handleClick} className="btn" to={''}>Sign Out</Link>
+            
+            <ul>{bookList.map(book => <BookCard key={book['id']} title={book['volumeInfo']['title']}
+            author={book['volumeInfo']['authors']} yearPublished={book['volumeInfo']['publishedDate']}
+            thumbnail={book['volumeInfo']['imageLinks']['thumbnail']} description={book['volumeInfo']
+            ['description']}></BookCard>)}</ul>
+
         </form>    
     )
 }
