@@ -99,10 +99,10 @@ export default function Home() {
 
             <Link type="button" onClick={handleClick} className="btn" to={''}>Sign Out</Link>
             
-            <ul>{bookList.map(book => <BookCard key={book['id']} title={book['volumeInfo']['title']}
+            {bookList.map(book => <BookCard key={book['id']} title={book['volumeInfo']['title']}
             author={book['volumeInfo']['authors']} yearPublished={book['volumeInfo']['publishedDate']}
             thumbnail={book['volumeInfo']['imageLinks']['thumbnail']} description={book['volumeInfo']
-            ['description']}></BookCard>)}</ul>
+            ['description']}></BookCard>)}
 
         </form>    
     )
