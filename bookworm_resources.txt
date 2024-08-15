@@ -71,3 +71,5 @@ https://react.dev/learn/rendering-lists
 https://react.dev/learn/passing-props-to-a-component
 https://getbootstrap.com/docs/5.3/components/card/
 https://stackoverflow.com/questions/21868610/make-column-fixed-position-in-bootstrap
+https://getbootstrap.com/docs/4.0/layout/grid/
+https://icons.getbootstrap.com/icons/star/
