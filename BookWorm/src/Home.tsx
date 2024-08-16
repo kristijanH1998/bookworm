@@ -54,12 +54,13 @@ export default function Home() {
     const handleSearch = (event: any) => {
         event.preventDefault();
         acquireJwt();
-        console.log(searchPhrase)
+        // console.log(searchPhrase)
         axios
             .get("http://localhost:3000/search-books", {headers: {"authorization": "Bearer " + jwt}, params: {"search-terms": searchPhrase, criteria: searchPlaceholder}})
             .then((res) => {
                 if (res.data.success) {
-                    console.log(typeof res.data.data.items)
+                    // console.log(res.data.data.items)
+                    // console.log(typeof res.data.data.items)
                     setBookList(res.data.data.items)
                     console.log(bookList)
                 } 
@@ -99,10 +100,22 @@ export default function Home() {
 
             <Link type="button" onClick={handleClick} className="btn" to={''}>Sign Out</Link>
             
-            {bookList.map(book => <BookCard key={book['id']} title={book['volumeInfo']['title']}
-            author={book['volumeInfo']['authors']} yearPublished={book['volumeInfo']['publishedDate']}
-            thumbnail={book['volumeInfo']['imageLinks']['thumbnail']} description={book['volumeInfo']
-            ['description']}></BookCard>)}
+            {typeof bookList == 'undefined' ? <h5>No results</h5> : bookList.map(book => <BookCard 
+                key={book['id'] ? book['id'] : undefined} 
+                title={book['volumeInfo']['title'] ? book['volumeInfo']['title'] : "N/A"}
+                author={book['volumeInfo']['authors'] ? book['volumeInfo']['authors'] : "N/A"} 
+                yearPublished={book['volumeInfo']['publishedDate'] ? book['volumeInfo']['publishedDate'] : "N/A"}
+                thumbnail={book['volumeInfo']['imageLinks']['thumbnail']} 
+                description={book['volumeInfo']['description'] ? book['volumeInfo']['description'] : "N/A"} 
+                industryID={book['volumeInfo']['industryIdentifiers'] ? book['volumeInfo']['industryIdentifiers'][0]['identifier'] : "N/A"}
+                categories={book['volumeInfo']['categories'] ? book['volumeInfo']['categories'] : "N/A"}>
+            </BookCard>)}
+
+
+
+{/* editable={this.props.editable ?
+                  this.props.editableOpts : 
+                  undefined} */}
 
         </form>    
     )

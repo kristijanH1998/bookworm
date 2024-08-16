@@ -28,6 +28,8 @@ export default function BookCard(props: any) {
                         <h4 className="card-text">{props.author}</h4>
                         <p className="card-text">{props.description}</p>
                         <p className="card-text"><small className="text-body-secondary">Year: {props.yearPublished}</small></p>
+                        <p className="card-text"><small className="text-body-secondary">Identifier: {props.industryID}</small></p>
+                        <p className="card-text"><small className="text-body-secondary">Categories: {props.categories}</small></p>
                     </div>
                 </div>
             </div>
