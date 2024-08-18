@@ -3,7 +3,10 @@ import axios from 'axios'
 import React from 'react';
 import { useState, useEffect } from "react";
 import BookCard from "./elementaryComponents/bookCard.tsx"
-
+// import google from "@googleapis/books"
+// var books = require("@googleapis/books")
+// import books from "@googleapis/books"
+declare var google: any;
 export default function Home() {
     const [searchPlaceholder, setSearchPlaceholder] = useState("title");
     const [jwt, setJwt] = useState<string | null>("");
@@ -12,7 +15,21 @@ export default function Home() {
 
     useEffect(() => {
         acquireJwt();
+
+        const script = document.createElement('script');
+        script.src = "https://www.google.com/books/jsapi.js";
+        script.type = "text/javascript"
+        document.body.appendChild(script);
+        google.books.load();
+        console.log(Object.getOwnPropertyNames(google.books))
+        
     },[])
+
+    function initialize() {
+        var viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'));
+        viewer.load('ISBN:0738531367');
+      }
+
 
     function acquireJwt () {
         if(localStorage.getItem("jwt")) {
@@ -68,11 +85,13 @@ export default function Home() {
             .catch((error) => {
                 console.log(error.response.data.error)
             });
-
+        initialize();
     };
 
     return (
         <form id="searchPage" className="d-flex flex-column align-items-center w-75">
+            <div id="viewerCanvas" style={{width: "800px", height: "650px"}}></div>
+
             <h1>Search Books</h1>
             <div className="d-flex flex-row m-3">
                 <div className="form-check form-check-inline">
@@ -103,12 +122,15 @@ export default function Home() {
             {typeof bookList == 'undefined' ? <h5>No results</h5> : bookList.map(book => <BookCard 
                 key={book['id'] ? book['id'] : undefined} 
                 title={book['volumeInfo']['title'] ? book['volumeInfo']['title'] : "N/A"}
-                author={book['volumeInfo']['authors'] ? book['volumeInfo']['authors'] : "N/A"} 
+                author={book['volumeInfo']['authors'] ? book['volumeInfo']['authors'].join(', ') : "N/A"}
+                publisher={book['volumeInfo']['publisher'] ? book['volumeInfo']['publisher'] : "N/A"} 
                 yearPublished={book['volumeInfo']['publishedDate'] ? book['volumeInfo']['publishedDate'] : "N/A"}
                 thumbnail={book['volumeInfo']['imageLinks']['thumbnail']} 
                 description={book['volumeInfo']['description'] ? book['volumeInfo']['description'] : "N/A"} 
                 industryID={book['volumeInfo']['industryIdentifiers'] ? book['volumeInfo']['industryIdentifiers'][0]['identifier'] : "N/A"}
-                categories={book['volumeInfo']['categories'] ? book['volumeInfo']['categories'] : "N/A"}>
+                categories={book['volumeInfo']['categories'] ? book['volumeInfo']['categories'] : "N/A"}
+                language={book['volumeInfo']['language'] ? book['volumeInfo']['language'] : "N/A"}
+                pageCount={book['volumeInfo']['pageCount'] ? book['volumeInfo']['pageCount'] : "N/A"}>
             </BookCard>)}
 
 
