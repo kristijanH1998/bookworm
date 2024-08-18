@@ -73,3 +73,26 @@ https://getbootstrap.com/docs/5.3/components/card/
 https://stackoverflow.com/questions/21868610/make-column-fixed-position-in-bootstrap
 https://getbootstrap.com/docs/4.0/layout/grid/
 https://icons.getbootstrap.com/icons/star/
+
+Reference tutorials from Bay Valley Tech's Mod 4 sources:
+https://youtu.be/YSsRH4ccqVI?si=8PNHXJ2gE5tctfo3
+https://www.youtube.com/watch?v=ioIlptgGu08
+https://www.youtube.com/watch?v=dc4TIHjLepY
+https://www.youtube.com/watch?v=gs88z-QeKUQ
+https://www.youtube.com/watch?v=tLnBQDqubTU
+
+https://stackoverflow.com/questions/32232659/react-inline-conditionally-pass-prop-to-component
+https://stackoverflow.com/questions/46855927/how-to-print-a-space-between-each-word-in-an-array
+https://chsohn15.medium.com/integrating-google-books-embedded-viewer-api-into-a-react-app-a81fde35c14d
+https://stackoverflow.com/questions/34424845/adding-script-tag-to-react-jsx
+https://stackoverflow.com/questions/31173738/typescript-getting-error-ts2304-cannot-find-name-require
+https://github.com/googleapis/google-api-nodejs-client?tab=readme-ov-file#installation
+https://googleapis.dev/nodejs/googleapis/latest/books/index.html#typescript
+https://www.npmjs.com/package/@googleapis/books/v/1.0.0
+https://react-redux.js.org/api/hooks
+https://www.w3schools.com/react/react_useref.asp
+https://www.youtube.com/watch?v=F2kTdZXS9Cc
+
+
+https://stackoverflow.com/questions/63604420/cannot-find-name-google-angular-8
+https://stackoverflow.com/questions/2257993/how-to-display-all-methods-of-an-object
