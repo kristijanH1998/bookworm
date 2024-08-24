@@ -93,6 +93,21 @@ https://react-redux.js.org/api/hooks
 https://www.w3schools.com/react/react_useref.asp
 https://www.youtube.com/watch?v=F2kTdZXS9Cc
 
-
 https://stackoverflow.com/questions/63604420/cannot-find-name-google-angular-8
 https://stackoverflow.com/questions/2257993/how-to-display-all-methods-of-an-object
+
+Obstacle faced while including Google Books Embedded API viewer canvas on the Search Books page: TypeScript compiler initially
+threw errors indicating it does not recognize 'google' in 'google.books.load();' with the message 'Cannot find name 'google'', 
+and its associated functions and classes ('.books' class,'load()' method, etc.). This issue was mitigated by adding the following lines:
+'<script type="text/javascript" src="https://www.google.com/books/jsapi.js"></script>' in index.html,
+'declare var google: any;' in Home.tsx,
+it is not enough to just write these lines of code in Home.tsx before calling 'google.books.load();':
+
+'const script = document.createElement('script');
+script.src = "https://www.google.com/books/jsapi.js";
+script.type = "text/javascript"
+document.body.appendChild(script);'
+
+we also need to include the jsapi.js script in the script tag in index.html, and have 'declare var google: any;' in Home.tsx.
+
+
