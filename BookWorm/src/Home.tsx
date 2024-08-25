@@ -15,21 +15,25 @@ export default function Home() {
 
     useEffect(() => {
         acquireJwt();
-
         const script = document.createElement('script');
         script.src = "https://www.google.com/books/jsapi.js";
         script.type = "text/javascript"
         document.body.appendChild(script);
         google.books.load();
-        console.log(Object.getOwnPropertyNames(google.books))
+        // console.log(Object.getOwnPropertyNames(google.books))
+        
         
     },[])
 
-    function initialize() {
+    function initialize(identifier: any) {
+        
         var viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'));
-        viewer.load('ISBN:0738531367');
-      }
+        viewer.load(identifier);
+    }
 
+    function favorite(){
+
+    }
 
     function acquireJwt () {
         if(localStorage.getItem("jwt")) {
@@ -43,10 +47,12 @@ export default function Home() {
     }
 
     const onRadioChange = (e: any) => {
+        e.preventDefault();
         setSearchPlaceholder(e.target.value)
     }
 
     const handlePhraseChange = (event: any) => {
+        event.preventDefault(); 
         setSearchPhrase(event.target.value);
     }
 
@@ -85,12 +91,14 @@ export default function Home() {
             .catch((error) => {
                 console.log(error.response.data.error)
             });
-        initialize();
+        // initialize();
     };
 
     return (
+        <>
+                    <div id="viewerCanvas" style={{width: "800px", height: "650px"}}></div>
+
         <form id="searchPage" className="d-flex flex-column align-items-center w-75">
-            <div id="viewerCanvas" style={{width: "800px", height: "650px"}}></div>
 
             <h1>Search Books</h1>
             <div className="d-flex flex-row m-3">
@@ -110,7 +118,7 @@ export default function Home() {
                     <label className="form-check-label" htmlFor="inlineRadio3">ISBN</label>
                 </div>
             </div>
-            
+             
             <div className="input-group mb-3">
                 <input type="text" className="form-control" value={searchPhrase}
                     onChange={event => handlePhraseChange(event)} placeholder={"Enter book " + searchPlaceholder} aria-label="Enter book parameters" aria-describedby="button-addon2"/>
@@ -130,15 +138,13 @@ export default function Home() {
                 industryID={book['volumeInfo']['industryIdentifiers'] ? book['volumeInfo']['industryIdentifiers'][0]['identifier'] : "N/A"}
                 categories={book['volumeInfo']['categories'] ? book['volumeInfo']['categories'] : "N/A"}
                 language={book['volumeInfo']['language'] ? book['volumeInfo']['language'] : "N/A"}
-                pageCount={book['volumeInfo']['pageCount'] ? book['volumeInfo']['pageCount'] : "N/A"}>
+                pageCount={book['volumeInfo']['pageCount'] ? book['volumeInfo']['pageCount'] : "N/A"}
+                onClickRead={() => initialize(book['volumeInfo']['industryIdentifiers'][0]['identifier'])}
+                onClickFav={favorite}
+                >
             </BookCard>)}
 
-
-
-{/* editable={this.props.editable ?
-                  this.props.editableOpts : 
-                  undefined} */}
-
         </form>    
+                    </>
     )
 }

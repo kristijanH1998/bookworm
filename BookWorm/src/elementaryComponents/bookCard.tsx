@@ -15,7 +15,7 @@ export default function BookCard(props: any) {
                                 </svg><span className="mx-2">Favorite</span></button>
                         </div>
                         <div className="col-sm d-flex justify-content-center">
-                            <button className="btn" type="button">Read</button>
+                            <button className="btn" type="button" onClick={props.onClickRead}>Read</button>
                         </div>
                     </div>
                 </div>
