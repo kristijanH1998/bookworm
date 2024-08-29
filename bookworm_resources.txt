@@ -116,4 +116,9 @@ throw a 'google.books.load is not a function' error. This was fixed by...???
 https://stackoverflow.com/questions/64022462/pass-multiple-onclick-handler-functions-to-child-component
 https://paulund.co.uk/reactjs-onclick-child-components
 https://legacy.reactjs.org/docs/faq-functions.html
-
+https://stackoverflow.com/questions/48423061/radio-buttons-need-to-click-twice-to-reflect-change
+https://rangen.medium.com/dynamically-load-google-scripts-with-react-and-the-useeffect-hook-3700b908e50f
+https://getbootstrap.com/docs/5.3/components/modal/#via-javascript
+https://stackoverflow.com/questions/33108188/can-i-have-bootstrap-columns-go-to-next-row-two-by-two-on-smaller-screens
+https://stackoverflow.com/questions/43991224/react-show-these-div-if-true
+https://getbootstrap.com/docs/5.3/utilities/flex/#justify-content
