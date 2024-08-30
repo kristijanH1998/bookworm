@@ -15,6 +15,7 @@ body {
 }
 .btn:hover {
     background-color:#6245c9;
+    color:white;
     transition: 0.5s;
 }
 
