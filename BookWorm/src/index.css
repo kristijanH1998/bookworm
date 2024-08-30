@@ -3,18 +3,18 @@
     font-family: Inter;
 }
 body {
-    background-image: url("/books-wallpaper.png");
+    background-image: url("/background.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 .btn {
-    background-color: #F4A460;
+    background-color: #350888;
     color: white;
     font-size: large;
 }
 .btn:hover {
-    background-color:#ffd0a7;
+    background-color:#6245c9;
     transition: 0.5s;
 }
 
@@ -29,5 +29,5 @@ form {
 }
 
 h1 {
-    color: rgb(244, 164, 96);
+    color: #350888;
 }
