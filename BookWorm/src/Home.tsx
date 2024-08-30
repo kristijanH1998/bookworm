@@ -39,10 +39,15 @@ export default function Home() {
 
     //makes viewer canvas load contents of a book whose identifier number was received as parameter 'identifier'
     function initialize(identifier: any) {
-        var viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'));
-        viewer.load(identifier, alertNotFound);
-        document.getElementById("viewerCanvas")?.classList.remove("d-none")
-        document.getElementById("viewerCanvas")?.classList.add("d-block")
+        if(typeof identifier != "undefined") {
+            const iden = identifier[0]['identifier']
+            var viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'));
+            viewer.load(iden, alertNotFound);
+            document.getElementById("viewerCanvas")?.classList.remove("d-none")
+            document.getElementById("viewerCanvas")?.classList.add("d-block")
+        } else {
+            alert("could not embed the book!");
+        }
     }
 
     function favorite(){
@@ -150,11 +155,10 @@ export default function Home() {
                     categories={book['volumeInfo']['categories'] ? book['volumeInfo']['categories'] : "N/A"}
                     language={book['volumeInfo']['language'] ? book['volumeInfo']['language'] : "N/A"}
                     pageCount={book['volumeInfo']['pageCount'] ? book['volumeInfo']['pageCount'] : "N/A"}
-                    onClickRead={() => initialize(book['volumeInfo']['industryIdentifiers'][0]['identifier'])}
+                    onClickRead={() => initialize(book['volumeInfo']['industryIdentifiers'])}
                     onClickFav={favorite}
                     >
                 </BookCard>)}
-
             </form>
             <div id="viewerCanvas" style={{width: "800px", height: "650px"}} className="d-none"></div>   
         </div>
