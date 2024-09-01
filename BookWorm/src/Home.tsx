@@ -13,6 +13,7 @@ export default function Home() {
     const [searchPhrase, setSearchPhrase] = useState<string>("");
     const [bookList, setBookList] = useState<object[]>([]);
     const [scriptLoaded, setScriptLoaded] = useState(false);
+    const [page, setPage] = useState<number>(0);
 
     useEffect(() => {
         acquireJwt();
@@ -36,6 +37,26 @@ export default function Home() {
     function alertNotFound() {
         alert("could not embed the book!");
     }
+
+    useEffect(() => {
+        if(page > 0) {
+            acquireJwt();
+            // console.log(searchPhrase)
+            axios
+                .get("http://localhost:3000/search-books", {headers: {"authorization": "Bearer " + jwt}, params: {"search-terms": searchPhrase, criteria: searchPlaceholder, page: page * 10}})
+                .then((res) => {
+                    if (res.data.success) {
+                        // console.log(res.data.data.items)
+                        // console.log(typeof res.data.data.items)
+                        setBookList(res.data.data.items)
+                        console.log(bookList)
+                    } 
+                })
+                .catch((error) => {
+                    console.log(error.response.data.error)
+                });
+        }     
+    }, [page])
 
     //makes viewer canvas load contents of a book whose identifier number was received as parameter 'identifier'
     function initialize(identifier: any) {
@@ -93,12 +114,13 @@ export default function Home() {
             });
     };
 
+    //runs when Search button is clicked; calls Google Books API with headers and parameters specified below
     const handleSearch = (event: any) => {
         event.preventDefault();
         acquireJwt();
         // console.log(searchPhrase)
         axios
-            .get("http://localhost:3000/search-books", {headers: {"authorization": "Bearer " + jwt}, params: {"search-terms": searchPhrase, criteria: searchPlaceholder}})
+            .get("http://localhost:3000/search-books", {headers: {"authorization": "Bearer " + jwt}, params: {"search-terms": searchPhrase, criteria: searchPlaceholder, page: page * 10}})
             .then((res) => {
                 if (res.data.success) {
                     // console.log(res.data.data.items)
@@ -112,6 +134,22 @@ export default function Home() {
             });
         // initialize();
     };
+
+    //runs when Next and Previous buttons are clicked, to fetch next or previous group of 10 output results (from Google Books API)
+    const updatePage = (event: any) => {
+        event.preventDefault();
+        // console.log(event.target.id);
+        if(event.target.id == "prevBtn") {
+            if(page > 0) {
+                setPage(page - 1);
+            }
+        } else {
+            if(bookList.length == 10) {
+                setPage(page + 1);
+            }
+        }
+        // handleSearch(event);
+    }
 
     return (
         <div className="d-flex justify-content-around align-items-center w-100">
@@ -138,7 +176,7 @@ export default function Home() {
                 <div className="input-group mb-3">
                     <input type="text" className="form-control" value={searchPhrase}
                         onChange={event => handlePhraseChange(event)} placeholder={"Enter book " + searchPlaceholder} aria-label="Enter book parameters" aria-describedby="button-addon2"/>
-                    <button className="btn" type="button" onClick={handleSearch} id="searchBtn">Search</button>
+                    <button className="btn" type="button" onClick={handleSearch}>Search</button>
                 </div>
 
                 <Link type="button" onClick={handleClick} className="btn" to={''}>Sign Out</Link>
@@ -159,6 +197,9 @@ export default function Home() {
                     onClickFav={favorite}
                     >
                 </BookCard>)}
+
+                <button className="btn" type="button" onClick={(event) => updatePage(event)} id="prevBtn">Previous</button>
+                <button className="btn" type="button" onClick={(event) => updatePage(event)} id="nextBtn">Next</button>
             </form>
             <div id="viewerCanvas" style={{width: "800px", height: "650px"}} className="d-none"></div>   
         </div>
