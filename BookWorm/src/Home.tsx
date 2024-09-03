@@ -39,7 +39,7 @@ export default function Home() {
     }
 
     useEffect(() => {
-        if(page > 0) {
+        if(jwt && page >= 0) {
             acquireJwt();
             // console.log(searchPhrase)
             axios
@@ -55,7 +55,9 @@ export default function Home() {
                 .catch((error) => {
                     console.log(error.response.data.error)
                 });
-        }     
+        }
+        console.log(page)
+     
     }, [page])
 
     //makes viewer canvas load contents of a book whose identifier number was received as parameter 'identifier'
@@ -140,12 +142,15 @@ export default function Home() {
         event.preventDefault();
         // console.log(event.target.id);
         if(event.target.id == "prevBtn") {
+            console.log("prev")
             if(page > 0) {
                 setPage(page - 1);
             }
         } else {
+            console.log("next")
             if(bookList.length == 10) {
                 setPage(page + 1);
+
             }
         }
         // handleSearch(event);
