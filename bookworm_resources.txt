@@ -123,3 +123,41 @@ https://stackoverflow.com/questions/33108188/can-i-have-bootstrap-columns-go-to-
 https://stackoverflow.com/questions/43991224/react-show-these-div-if-true
 https://getbootstrap.com/docs/5.3/utilities/flex/#justify-content
 https://static.vecteezy.com/system/resources/previews/037/741/250/non_2x/floral-pattern-with-blue-flowers-daisy-on-a-dark-blue-backgrounds-for-textile-wallpaper-books-covers-digital-interfaces-prints-design-templates-material-cards-invitations-banners-posters-vector.jpg
+https://stackoverflow.com/questions/12897742/how-do-you-specify-that-a-class-property-is-an-integer
+https://stackoverflow.com/questions/48476625/having-trouble-with-jsonwebtoken-jsonwebtoken-error-jwt-must-be-provided
+
+Obstacle 3: This segment of code:
+"useEffect(() => {
+        if(page >= 0) {
+            acquireJwt();
+            // console.log(searchPhrase)
+            axios
+                .get("http://localhost:3000/search-books", {headers: {"authorization": "Bearer " + jwt}, params: {"search-terms": searchPhrase, criteria: searchPlaceholder, page: page * 10}})
+                .then((res) => {
+                    if (res.data.success) {
+                        // console.log(res.data.data.items)
+                        // console.log(typeof res.data.data.items)
+                        setBookList(res.data.data.items)
+                        console.log(bookList)
+                    } 
+                })
+                .catch((error) => {
+                    console.log(error.response.data.error)
+                });
+        }
+        console.log(page)
+     
+    }, [page])"
+threw an error from the backend complaining about jwt key not being provided. This made it impossible to send the /search-books
+request above whenever the condition page>=0 was true; it was only functional when page>0 condition was required. This bug was 
+fixed by including 'jwt' as condition in the if statement (like this: "if(jwt && page >= 0)"), since jwt was now first checked
+for value inside it and whether it was undefined before the /search-books endpoint request was sent.
+
+Security safeguards:
+1) SQL injection prevented by using named placeholders in POST and PUT queries (INSERT INTO user (user-name, password) VALUES (:username,:password)
+The syntax: {username:req.body.username, password:hash}
+2) Hashing passwords using 'bcrypt' library and salt value of 10
+
+https://imperiumdynamics.com/blog/How-to-Write-a-Functional-Design-Document.html
+
+
