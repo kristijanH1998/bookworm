@@ -159,5 +159,12 @@ The syntax: {username:req.body.username, password:hash}
 2) Hashing passwords using 'bcrypt' library and salt value of 10
 
 https://imperiumdynamics.com/blog/How-to-Write-a-Functional-Design-Document.html
+https://balsamiq.com/learn/ui-control-guidelines/special-pickers/
+https://balsamiq.com/learn/ui-control-guidelines/text-input/
+https://balsamiq.com/learn/ui-control-guidelines/radio-buttons/
+https://balsamiq.com/learn/ui-control-guidelines/menu-bars/
+https://www.codecademy.com/resources/docs/uiux/wireframe-elements
+https://uxplanet.org/date-picker-design-best-practices-41bd522f10a5
+https://www.figma.com/community/plugin/1218870312659740254/target-flow
 
 
