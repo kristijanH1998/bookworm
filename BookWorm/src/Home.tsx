@@ -73,8 +73,8 @@ export default function Home() {
         }
     }
 
-    function favorite(){
-
+    function favorite(title: any, author: any, publisher: any, year: any, identifier: any, thumbnail: any){
+        console.log(title,author,publisher,year,identifier,thumbnail);
     }
 
     function acquireJwt () {
@@ -199,7 +199,13 @@ export default function Home() {
                     language={book['volumeInfo']['language'] ? book['volumeInfo']['language'] : "N/A"}
                     pageCount={book['volumeInfo']['pageCount'] ? book['volumeInfo']['pageCount'] : "N/A"}
                     onClickRead={() => initialize(book['volumeInfo']['industryIdentifiers'])}
-                    onClickFav={favorite}
+                    onClickFav={() => favorite(
+                        book['volumeInfo']['title'] ? book['volumeInfo']['title'] : "N/A", 
+                        book['volumeInfo']['authors'] ? book['volumeInfo']['authors'].join(', ') : "N/A", 
+                        book['volumeInfo']['publisher'] ? book['volumeInfo']['publisher'] : "N/A", 
+                        book['volumeInfo']['publishedDate'] ? book['volumeInfo']['publishedDate'] : "N/A",
+                        book['volumeInfo']['industryIdentifiers'] ? book['volumeInfo']['industryIdentifiers'][0]['identifier'] : "N/A", 
+                        book['volumeInfo']['imageLinks']['thumbnail'])}
                     >
                 </BookCard>)}
 
