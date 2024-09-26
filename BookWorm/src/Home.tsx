@@ -164,7 +164,9 @@ export default function Home() {
                 "identifier": identifier, "thumbnail": thumbnail}}, {headers: {"authorization": "Bearer " + jwt}})
             .then((res) => {
                 if (res.data.success) {
-                    console.log("success!")
+                    alert("Success!")
+                } else {
+                    alert("This book is already among Favorites!")
                 } 
             })
             .catch((error) => {
@@ -178,8 +180,8 @@ export default function Home() {
             <div className="d-flex flex-column justify-content-around align-items-center w-100">
                 <nav className="navbar d-flex w-75">
                     <form className="container-fluid justify-content-center">
-                        <button className="btn btn-outline-success me-3" type="button">Main button</button>
-                        <button className="btn btn-outline-secondary me-3" type="button">Smaller button</button>
+                        <button className="btn btn-outline-success me-3" type="button">My Books</button>
+                        <button className="btn btn-outline-secondary me-3" type="button">My Profile</button>
                         <Link type="button" onClick={handleClick} className="btn" to={''}>Sign Out</Link>
                     </form>
                 </nav>
@@ -236,7 +238,7 @@ export default function Home() {
                     </div>
                 </form>   
             </div>
-            <div id="viewerCanvas" style={{width: "800px", height: "650px"}} className="d-none"></div>
+            <div id="viewerCanvas" style={{width: "800px", height: "800px"}} className="d-none my-5"></div>
         </div>
     )
 }
