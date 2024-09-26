@@ -125,10 +125,11 @@ export default function Register() {
                 <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
                 <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
             </div> */}
-            <button type="submit" className="btn mb-2">Create Account</button>
+            <div className="d-flex">
+                <button type="submit" className="btn mx-3">Create Account</button>
+                <Link type="button" to="/" className="btn">Back to Login</Link>
+            </div>
             {error && (<div className="mb-2">{error}</div>)}
-            {/* <button type="button" className="btn">Back to Login</button> */}
-            <Link type="button" to="/" className="btn">Back to Login</Link>   
         </form>
     )
 }

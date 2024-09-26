@@ -51,9 +51,11 @@ export default function Login() {
                 <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
                 <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
             </div> */}
-            <button type="submit" className="btn mb-2">Sign In</button>
+            <div className="d-flex">
+                <button type="submit" className="btn mx-3">Sign In</button>
+                <Link type="button" to="/register" className="btn">Register</Link>
+            </div>
             {error && (<div className="mb-2">{error}</div>)}
-            <Link type="button" to="/register" className="btn">Register</Link>   
         </form>
     )
 }
