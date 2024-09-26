@@ -174,3 +174,5 @@ sent with the request):
 https://stackoverflow.com/questions/38274674/jwt-authentication-working-with-http-get-but-not-with-http-post
 https://stackoverflow.com/questions/51415439/how-can-i-add-raw-data-body-to-an-axios-request
 
+https://getbootstrap.com/docs/5.3/components/navbar/#how-it-works
+
