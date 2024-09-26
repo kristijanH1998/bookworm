@@ -63,11 +63,11 @@ export default function Home() {
     //makes viewer canvas load contents of a book whose identifier number was received as parameter 'identifier'
     function initialize(identifier: any) {
         if(typeof identifier != "undefined") {
-            const iden = identifier[0]['identifier']
+            const iden = identifier[0]['identifier'];
             var viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'));
             viewer.load(iden, alertNotFound);
-            document.getElementById("viewerCanvas")?.classList.remove("d-none")
-            document.getElementById("viewerCanvas")?.classList.add("d-block")
+            document.getElementById("viewerCanvas")?.classList.remove("d-none");
+            document.getElementById("viewerCanvas")?.classList.add("d-block");
         } else {
             alert("could not embed the book!");
         }
@@ -124,7 +124,9 @@ export default function Home() {
                     // console.log(res.data.data.items)
                     // console.log(typeof res.data.data.items)
                     setBookList(res.data.data.items)
-                    console.log(bookList)
+                    // console.log(bookList)
+                    document.getElementById("pagingBtns")?.classList.remove("d-none");
+                    document.getElementById("pagingBtns")?.classList.add("d-block");
                 } 
             })
             .catch((error) => {
@@ -172,62 +174,69 @@ export default function Home() {
     }
 
     return (
-        <div className="d-flex justify-content-around align-items-center w-100">
-            <form id="searchPage" className="d-flex flex-column align-items-center w-50">
-                <h1>Search Books</h1>
-                <div className="d-flex flex-row m-3">
-                    <div className="form-check form-check-inline">
-                        <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="title" 
-                        checked={searchPlaceholder === "title"} onChange={onRadioChange}/>
-                        <label className="form-check-label" htmlFor="inlineRadio1">Title</label>
+        <div className="d-flex w-75">
+            <div className="d-flex flex-column justify-content-around align-items-center w-100">
+                <nav className="navbar d-flex w-75">
+                    <form className="container-fluid justify-content-center">
+                        <button className="btn btn-outline-success me-3" type="button">Main button</button>
+                        <button className="btn btn-outline-secondary me-3" type="button">Smaller button</button>
+                        <Link type="button" onClick={handleClick} className="btn" to={''}>Sign Out</Link>
+                    </form>
+                </nav>
+                <form id="searchPage" className="d-flex flex-column align-items-center w-75">
+                    <h1>Search Books</h1>
+                    <div className="d-flex flex-row m-3">
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="title" 
+                            checked={searchPlaceholder === "title"} onChange={onRadioChange}/>
+                            <label className="form-check-label" htmlFor="inlineRadio1">Title</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="author"
+                            checked={searchPlaceholder === "author"} onChange={onRadioChange}/>
+                            <label className="form-check-label" htmlFor="inlineRadio2">Author</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="isbn"
+                            checked={searchPlaceholder === "isbn"} onChange={onRadioChange}/>
+                            <label className="form-check-label" htmlFor="inlineRadio3">ISBN</label>
+                        </div>
                     </div>
-                    <div className="form-check form-check-inline">
-                        <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="author"
-                        checked={searchPlaceholder === "author"} onChange={onRadioChange}/>
-                        <label className="form-check-label" htmlFor="inlineRadio2">Author</label>
+                    <div className="input-group mb-3">
+                        <input type="text" className="form-control" value={searchPhrase}
+                            onChange={event => handlePhraseChange(event)} placeholder={"Enter book " + searchPlaceholder} aria-label="Enter book parameters" aria-describedby="button-addon2"/>
+                        <button className="btn" type="button" onClick={handleSearch}>Search</button>
                     </div>
-                    <div className="form-check form-check-inline">
-                        <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="isbn"
-                        checked={searchPlaceholder === "isbn"} onChange={onRadioChange}/>
-                        <label className="form-check-label" htmlFor="inlineRadio3">ISBN</label>
+                    {typeof bookList == 'undefined' ? <h5>No results</h5> : bookList.map(book => 
+                    <BookCard 
+                        key={book['id'] ? book['id'] : undefined} 
+                        title={book['volumeInfo']['title'] ? book['volumeInfo']['title'] : "N/A"}
+                        author={book['volumeInfo']['authors'] ? book['volumeInfo']['authors'].join(', ') : "N/A"}
+                        publisher={book['volumeInfo']['publisher'] ? book['volumeInfo']['publisher'] : "N/A"} 
+                        yearPublished={book['volumeInfo']['publishedDate'] ? book['volumeInfo']['publishedDate'] : "N/A"}
+                        thumbnail={book['volumeInfo']['imageLinks']['thumbnail']} 
+                        description={book['volumeInfo']['description'] ? book['volumeInfo']['description'] : "N/A"} 
+                        industryID={book['volumeInfo']['industryIdentifiers'] ? book['volumeInfo']['industryIdentifiers'][0]['identifier'] : "N/A"}
+                        categories={book['volumeInfo']['categories'] ? book['volumeInfo']['categories'] : "N/A"}
+                        language={book['volumeInfo']['language'] ? book['volumeInfo']['language'] : "N/A"}
+                        pageCount={book['volumeInfo']['pageCount'] ? book['volumeInfo']['pageCount'] : "N/A"}
+                        onClickRead={() => initialize(book['volumeInfo']['industryIdentifiers'])}
+                        onClickFav={(event: any) => favorite(event,
+                            book['volumeInfo']['title'] ? book['volumeInfo']['title'] : "N/A", 
+                            book['volumeInfo']['authors'] ? book['volumeInfo']['authors'].join(', ') : "N/A", 
+                            book['volumeInfo']['publisher'] ? book['volumeInfo']['publisher'] : "N/A", 
+                            book['volumeInfo']['publishedDate'] ? book['volumeInfo']['publishedDate'] : "N/A",
+                            book['volumeInfo']['industryIdentifiers'] ? book['volumeInfo']['industryIdentifiers'][0]['identifier'] : "N/A", 
+                            book['volumeInfo']['imageLinks']['thumbnail'])}
+                        >
+                    </BookCard>)}
+                    <div id="pagingBtns" className="d-none d-flex w-75 justify-content-center">
+                        <button className="btn me-3" type="button" onClick={(event) => updatePage(event)} id="prevBtn">Previous</button>
+                        <button className="btn" type="button" onClick={(event) => updatePage(event)} id="nextBtn">Next</button>
                     </div>
-                </div>
-                
-                <div className="input-group mb-3">
-                    <input type="text" className="form-control" value={searchPhrase}
-                        onChange={event => handlePhraseChange(event)} placeholder={"Enter book " + searchPlaceholder} aria-label="Enter book parameters" aria-describedby="button-addon2"/>
-                    <button className="btn" type="button" onClick={handleSearch}>Search</button>
-                </div>
-
-                <Link type="button" onClick={handleClick} className="btn" to={''}>Sign Out</Link>
-                
-                {typeof bookList == 'undefined' ? <h5>No results</h5> : bookList.map(book => <BookCard 
-                    key={book['id'] ? book['id'] : undefined} 
-                    title={book['volumeInfo']['title'] ? book['volumeInfo']['title'] : "N/A"}
-                    author={book['volumeInfo']['authors'] ? book['volumeInfo']['authors'].join(', ') : "N/A"}
-                    publisher={book['volumeInfo']['publisher'] ? book['volumeInfo']['publisher'] : "N/A"} 
-                    yearPublished={book['volumeInfo']['publishedDate'] ? book['volumeInfo']['publishedDate'] : "N/A"}
-                    thumbnail={book['volumeInfo']['imageLinks']['thumbnail']} 
-                    description={book['volumeInfo']['description'] ? book['volumeInfo']['description'] : "N/A"} 
-                    industryID={book['volumeInfo']['industryIdentifiers'] ? book['volumeInfo']['industryIdentifiers'][0]['identifier'] : "N/A"}
-                    categories={book['volumeInfo']['categories'] ? book['volumeInfo']['categories'] : "N/A"}
-                    language={book['volumeInfo']['language'] ? book['volumeInfo']['language'] : "N/A"}
-                    pageCount={book['volumeInfo']['pageCount'] ? book['volumeInfo']['pageCount'] : "N/A"}
-                    onClickRead={() => initialize(book['volumeInfo']['industryIdentifiers'])}
-                    onClickFav={(event) => favorite(event,
-                        book['volumeInfo']['title'] ? book['volumeInfo']['title'] : "N/A", 
-                        book['volumeInfo']['authors'] ? book['volumeInfo']['authors'].join(', ') : "N/A", 
-                        book['volumeInfo']['publisher'] ? book['volumeInfo']['publisher'] : "N/A", 
-                        book['volumeInfo']['publishedDate'] ? book['volumeInfo']['publishedDate'] : "N/A",
-                        book['volumeInfo']['industryIdentifiers'] ? book['volumeInfo']['industryIdentifiers'][0]['identifier'] : "N/A", 
-                        book['volumeInfo']['imageLinks']['thumbnail'])}
-                    >
-                </BookCard>)}
-
-                <button className="btn" type="button" onClick={(event) => updatePage(event)} id="prevBtn">Previous</button>
-                <button className="btn" type="button" onClick={(event) => updatePage(event)} id="nextBtn">Next</button>
-            </form>
-            <div id="viewerCanvas" style={{width: "800px", height: "650px"}} className="d-none"></div>   
+                </form>   
+            </div>
+            <div id="viewerCanvas" style={{width: "800px", height: "650px"}} className="d-none"></div>
         </div>
     )
 }
