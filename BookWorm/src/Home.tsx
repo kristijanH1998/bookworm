@@ -22,10 +22,7 @@ export default function Home() {
         script.type = "text/javascript";
         script.addEventListener('load', () => setScriptLoaded(true));
         document.body.appendChild(script);
-        
         // console.log(Object.getOwnPropertyNames(google.books))
-        
-        
     },[])
 
     useEffect(() => {
@@ -172,7 +169,6 @@ export default function Home() {
             .catch((error) => {
                 console.log(error.response.data.error)
             });
-
     }
 
     return (

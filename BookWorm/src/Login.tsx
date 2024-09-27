@@ -35,27 +35,29 @@ export default function Login() {
       };
 
     return (
-        <form onSubmit={handleSubmit} className="d-flex flex-column align-items-center">
-            <h1 className="mb-5"><b>Login</b></h1>
-            <div className="mb-3 d-flex flex-column align-items-center">
-                <label htmlFor="email" className="form-label">Email address</label>
-                <input type="email" className="form-control" id="email" aria-describedby="emailHelp" 
-                    value={email} onChange={handleChange(setEmail)} required/>
-            </div>
-            <div className="mb-3 d-flex flex-column align-items-center">
-                <label htmlFor="password" className="form-label">Password</label>
-                <input type="password" className="form-control" id="password" 
-                    value={password} onChange={handleChange(setPassword)} required/>
-            </div>
-            {/* <div className="mb-3 form-check">
-                <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-                <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
-            </div> */}
-            <div className="d-flex">
-                <button type="submit" className="btn mx-3">Sign In</button>
-                <Link type="button" to="/register" className="btn">Register</Link>
-            </div>
-            {error && (<div className="mb-2">{error}</div>)}
-        </form>
+        <div className="d-flex align-items-center">
+            <form onSubmit={handleSubmit} className="d-flex flex-column align-items-center justify-content-center">
+                <h1 className="mb-5"><b>Login</b></h1>
+                <div className="mb-3 d-flex flex-column align-items-center">
+                    <label htmlFor="email" className="form-label">Email address</label>
+                    <input type="email" className="form-control" id="email" aria-describedby="emailHelp" 
+                        value={email} onChange={handleChange(setEmail)} required/>
+                </div>
+                <div className="mb-3 d-flex flex-column align-items-center">
+                    <label htmlFor="password" className="form-label">Password</label>
+                    <input type="password" className="form-control" id="password" 
+                        value={password} onChange={handleChange(setPassword)} required/>
+                </div>
+                {/* <div className="mb-3 form-check">
+                    <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
+                    <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
+                </div> */}
+                <div className="d-flex">
+                    <button type="submit" className="btn mx-3">Sign In</button>
+                    <Link type="button" to="/register" className="btn">Register</Link>
+                </div>
+                {error && (<div className="mb-2">{error}</div>)}
+            </form>
+        </div>  
     )
 }
