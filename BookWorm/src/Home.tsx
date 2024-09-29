@@ -92,21 +92,38 @@ export default function Home() {
     }
 
     const navigate = useNavigate();
-    const handleClick = (event: any) => {
+    const goToPage = (event: any) => {
         event.preventDefault();
         acquireJwt();
         // console.log(jwt)
-        axios
-            .get("http://localhost:3000/log-out", {headers: {"authorization": "Bearer " + jwt}})
-            .then((res) => {
-                if (res.data.success) {
-                    localStorage.removeItem("jwt");
-                    navigate("/");
-                } 
-            })
-            .catch((error) => {
-                console.log(error.response.data.error)
-            });
+        console.log(event.target.id)
+        let page = "";
+        switch(event.target.id) {
+            case "myBooksBtn":
+                page = "my-books";
+                navigate("/" + page);
+                break;
+            case "myProfileBtn":
+                page = "my-profile";
+                navigate("/" + page);
+                break;
+            case "signOutBtn":
+                page = "/";
+                axios
+                    .get("http://localhost:3000/log-out", {headers: {"authorization": "Bearer " + jwt}})
+                    .then((res) => {
+                        if (res.data.success) {
+                            localStorage.removeItem("jwt");
+                            navigate(page);
+                        } 
+                    })
+                    .catch((error) => {
+                        console.log(error.response.data.error)
+                    });
+                break;
+            default:
+                alert("Action not valid."); 
+        }
     };
 
     //runs when Search button is clicked; calls Google Books API with headers and parameters specified below
@@ -187,9 +204,10 @@ export default function Home() {
             <div className="d-flex flex-column justify-content-around align-items-center w-100">
                 <nav className="navbar d-flex w-75">
                     <form className="container-fluid justify-content-center">
-                        <button className="btn btn-outline-success me-3" type="button">My Books</button>
-                        <button className="btn btn-outline-secondary me-3" type="button">My Profile</button>
-                        <Link type="button" onClick={handleClick} className="btn" to={''}>Sign Out</Link>
+                        {/* <button className="btn btn-outline-success me-3" type="button">My Books</button> */}
+                        <Link type="button" onClick={goToPage} className="btn me-3" to={'/my-books'} id="myBooksBtn">My Books</Link>
+                        <button className="btn btn-outline-secondary me-3" type="button" id="myProfileBtn">My Profile</button>
+                        <Link type="button" onClick={goToPage} className="btn" to={''} id="signOutBtn">Sign Out</Link>
                     </form>
                 </nav>
                 <form id="searchPage" className="d-flex flex-column align-items-center w-75">

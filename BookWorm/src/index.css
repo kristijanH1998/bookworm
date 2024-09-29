@@ -32,3 +32,13 @@ form {
 h1 {
     color: #350888;
 }
+
+.myCol {
+    font-size: large;
+    background-color: rgb(255 255 255 / 90%);
+    border-radius: 10px;
+    padding: 4rem;
+    max-height: 85vh;
+    max-width: 100vw;
+    overflow: scroll;
+}
