@@ -158,23 +158,23 @@ export default function Home() {
         // console.log(jwt);
         // console.log(event.currentTarget.id)
         let btn = event.currentTarget.id;
-        let endpoint = "";
+        let table = "";
         if(btn == "favBtn"){
-            endpoint = "favorite";
+            table = "favorite";
         } else if(btn == "finBtn") {
-            endpoint = "finished_reading";
+            table = "finished_reading";
         } else if(btn == "wishBtn") {
-            endpoint = "wishlist";
+            table = "wishlist";
         }
         axios
             .post("http://localhost:3000/add-to-list", {data: {"title": title, "author": author, "publisher": publisher, "year" : year, 
-                "identifier": identifier, "thumbnail": thumbnail, "endpoint": endpoint}}, {headers: {"authorization": "Bearer " + jwt}})
+                "identifier": identifier, "thumbnail": thumbnail, "table": table}}, {headers: {"authorization": "Bearer " + jwt}})
             .then((res) => {
                 if (res.data.success) {
                     alert("Success!");
                 } else {
-                    alert("This book is already in " + (endpoint == "favorite" ? "Favorites" : 
-                        (endpoint == "finished_reading" ? "Finished Books" : (endpoint == "wishlist" ? "Wishlist" : "N/A"))));
+                    alert("This book is already in " + (table == "favorite" ? "Favorites" : 
+                        (table == "finished_reading" ? "Finished Books" : (table == "wishlist" ? "Wishlist" : "N/A"))));
                 } 
             })
             .catch((error) => {
