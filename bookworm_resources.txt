@@ -180,3 +180,10 @@ https://www.dbvis.com/thetable/postgres-on-delete-cascade-a-guide/
 https://stackoverflow.com/questions/1481476/when-to-use-on-update-cascade
 https://stackoverflow.com/questions/12763726/mysql-make-a-pair-of-values-unique
 
+https://stackoverflow.com/questions/29168719/can-you-target-an-elements-parent-element-using-event-target
+https://stackoverflow.com/questions/35948157/javascript-insert-string-into-another-url-string
+https://www.w3schools.com/css/css_border_color.asp
+https://www.w3schools.com/js/js_switch.asp
+https://getbootstrap.com/docs/5.3/layout/gutters/
+https://stackoverflow.com/questions/48619381/react-how-to-use-child-formitem-components-without-getting-warning-validatedom
+
