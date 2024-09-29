@@ -151,19 +151,30 @@ export default function Home() {
         // handleSearch(event);
     }
 
-    const favorite = (event: any, title: any, author: any, publisher: any, year: any, identifier: any, thumbnail: any) => {
+    const addToList = (event: any, title: any, author: any, publisher: any, year: any, identifier: any, thumbnail: any) => {
         // console.log(title,author,publisher,year,identifier,thumbnail);
         event.preventDefault();
         acquireJwt();
         // console.log(jwt);
+        // console.log(event.currentTarget.id)
+        let btn = event.currentTarget.id;
+        let endpoint = "";
+        if(btn == "favBtn"){
+            endpoint = "favorite";
+        } else if(btn == "finBtn") {
+            endpoint = "finished_reading";
+        } else if(btn == "wishBtn") {
+            endpoint = "wishlist";
+        }
         axios
-            .post("http://localhost:3000/favorite", {data: {"title": title, "author": author, "publisher": publisher, "year" : year, 
-                "identifier": identifier, "thumbnail": thumbnail}}, {headers: {"authorization": "Bearer " + jwt}})
+            .post("http://localhost:3000/add-to-list", {data: {"title": title, "author": author, "publisher": publisher, "year" : year, 
+                "identifier": identifier, "thumbnail": thumbnail, "endpoint": endpoint}}, {headers: {"authorization": "Bearer " + jwt}})
             .then((res) => {
                 if (res.data.success) {
-                    alert("Success!")
+                    alert("Success!");
                 } else {
-                    alert("This book is already among Favorites!")
+                    alert("This book is already in " + (endpoint == "favorite" ? "Favorites" : 
+                        (endpoint == "finished_reading" ? "Finished Books" : (endpoint == "wishlist" ? "Wishlist" : "N/A"))));
                 } 
             })
             .catch((error) => {
@@ -219,7 +230,7 @@ export default function Home() {
                         language={book['volumeInfo']['language'] ? book['volumeInfo']['language'] : "N/A"}
                         pageCount={book['volumeInfo']['pageCount'] ? book['volumeInfo']['pageCount'] : "N/A"}
                         onClickRead={() => initialize(book['volumeInfo']['industryIdentifiers'])}
-                        onClickFav={(event: any) => favorite(event,
+                        onAddToList={(event: any) => addToList(event,
                             book['volumeInfo']['title'] ? book['volumeInfo']['title'] : "N/A", 
                             book['volumeInfo']['authors'] ? book['volumeInfo']['authors'].join(', ') : "N/A", 
                             book['volumeInfo']['publisher'] ? book['volumeInfo']['publisher'] : "N/A", 
