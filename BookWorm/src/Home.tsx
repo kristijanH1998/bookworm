@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import React from 'react';
 import { useState, useEffect } from "react";
-import BookCard from "./elementaryComponents/bookCard.tsx"
+import BookCard from "./elementaryComponents/bookCard.tsx";
 // import google from "@googleapis/books"
 // var books = require("@googleapis/books")
 // import books from "@googleapis/books"

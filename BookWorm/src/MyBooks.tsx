@@ -1,11 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios'
 import React from 'react';
+import ListBookCard from "./elementaryComponents/listBookCard.tsx";
 
 export default function MyBooks() {
 
     const [jwt, setJwt] = useState<string | null>("");
+    const [favoriteList, setFavoriteList] = useState<object[]>([]);
 
     function acquireJwt () {
         if(localStorage.getItem("jwt")) {
@@ -18,6 +20,31 @@ export default function MyBooks() {
         }
     }
     
+    useEffect(() => {
+        acquireJwt();
+    },[])
+
+    useEffect(() => {
+        if(jwt) {
+            console.log(jwt)
+            axios
+                .get("http://localhost:3000/fav-books", {headers: {"authorization": "Bearer " + jwt}/*, params: {page: page * 10} */})
+                .then((res) => {
+                    if (res.data.success) {
+                        // console.log(res.data.data)
+                        // console.log(typeof res.data.data.items)
+                        setFavoriteList(res.data.data)
+                        // console.log(favoriteList)
+                    } 
+                })
+                .catch((error) => {
+                    console.log(error.response.data.error)
+                });
+        }
+        // console.log(page)
+     
+    }, [jwt])
+
     const navigate = useNavigate();
     const goToPage = (event: any) => {
         event.preventDefault();
@@ -26,8 +53,8 @@ export default function MyBooks() {
         console.log(event.target.id)
         let page = "";
         switch(event.target.id) {
-            case "myBooksBtn":
-                page = "my-books";
+            case "searchBooksBtn":
+                page = "home";
                 navigate("/" + page);
                 break;
             case "myProfileBtn":
@@ -66,32 +93,28 @@ export default function MyBooks() {
             <form className="d-flex flex-column align-items-center">
                 <h1 className="my-5">My Books</h1>
                 <div className="container">
-                    <div className="row gx-3">
-                        <div className="col-4">
-                            <div style={{borderColor: "#350888", borderStyle: "solid"}} className="d-flex flex-column align-items-center myCol">
-                                <h1>123123123123123123123123123123123123</h1>
-                                <h1>123</h1>
-                                <h1>123</h1>
-                                <h1>123</h1>
-                                <h1>123</h1>
-                                <h1>123123123123123123123123123123123123</h1>
-                                <h1>123</h1>
-                                <h1>123</h1>
-                                <h1>123</h1>
-                                <h1>123</h1>
-                                <h1>123123123123123123123123123123123123</h1>
-                                <h1>123</h1>
-                                <h1>123</h1>
-                                <h1>123</h1>
-                                <h1>123</h1>
+                    <div className="row">
+                            <div style={{borderColor: "#350888", borderStyle: "solid"}} className="d-flex flex-column align-items-center myCol col-4">
+                                <h3>Favorites</h3>
+                                {typeof favoriteList == 'undefined' ? <h5>No favorites</h5> : favoriteList.map(book => 
+                                    <ListBookCard 
+                                        key={book['book_id'] ? book['book_id'] : undefined} 
+                                        title={book['title'] ? book['title'] : "N/A"}
+                                        author={book['author'] ? book['author'] : "N/A"}
+                                        publisher={book['publisher'] ? book['publisher'] : "N/A"} 
+                                        yearPublished={book['year'] ? book['year'] : "N/A"}
+                                        thumbnail={book['thumbnail']}  
+                                        industryID={book['identifier'] ? book['identifier'] : "N/A"}>
+                                    </ListBookCard>)}
                             </div>
-                        </div>
-                        <div className="col-4">
-                            <div className="d-flex flex-column align-items-center myCol"></div>
-                        </div>
-                        <div className="col-4">
-                            <div className="d-flex flex-column align-items-center myCol"></div>
-                        </div>
+                        
+                            <div className="d-flex flex-column align-items-center myCol col-4">
+                                <h3>Finished Reading</h3>
+                            </div>
+                        
+                            <div className="d-flex flex-column align-items-center myCol col-4">
+                                <h3>Plan to Read</h3>
+                            </div>
                     </div>
                 </div>
             </form>

@@ -29,7 +29,7 @@ form {
     overflow: scroll;
 }
 
-h1 {
+h1, h3 {
     color: #350888;
 }
 
@@ -38,7 +38,5 @@ h1 {
     background-color: rgb(255 255 255 / 90%);
     border-radius: 10px;
     padding: 4rem;
-    max-height: 85vh;
-    max-width: 100vw;
     overflow: scroll;
 }
