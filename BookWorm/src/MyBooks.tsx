@@ -8,6 +8,8 @@ export default function MyBooks() {
 
     const [jwt, setJwt] = useState<string | null>("");
     const [favoriteList, setFavoriteList] = useState<object[]>([]);
+    const [finishedList, setFinishedList] = useState<object[]>([]);
+    const [wishList, setWishList] = useState<object[]>([]);
 
     function acquireJwt () {
         if(localStorage.getItem("jwt")) {
@@ -42,7 +44,42 @@ export default function MyBooks() {
                 });
         }
         // console.log(page)
-     
+    }, [jwt])
+
+    useEffect(() => {
+        if(jwt) {
+            axios
+                .get("http://localhost:3000/finished-books", {headers: {"authorization": "Bearer " + jwt}/*, params: {page: page * 10} */})
+                .then((res) => {
+                    if (res.data.success) {
+                        // console.log(res.data.data)
+                        // console.log(typeof res.data.data.items)
+                        setFinishedList(res.data.data)
+                        // console.log(favoriteList)
+                    } 
+                })
+                .catch((error) => {
+                    console.log(error.response.data.error)
+                });
+        }
+    }, [jwt])
+
+    useEffect(() => {
+        if(jwt) {
+            axios
+                .get("http://localhost:3000/wishlist", {headers: {"authorization": "Bearer " + jwt}/*, params: {page: page * 10} */})
+                .then((res) => {
+                    if (res.data.success) {
+                        // console.log(res.data.data)
+                        // console.log(typeof res.data.data.items)
+                        setWishList(res.data.data)
+                        // console.log(favoriteList)
+                    } 
+                })
+                .catch((error) => {
+                    console.log(error.response.data.error)
+                });
+        }
     }, [jwt])
 
     const navigate = useNavigate();
@@ -110,10 +147,30 @@ export default function MyBooks() {
                         
                             <div style={{borderColor: "#350888", borderStyle: "solid"}} className="d-flex flex-column align-items-center myCol col">
                                 <h3>Finished Reading</h3>
+                                {typeof finishedList == 'undefined' ? <h5>No favorites</h5> : finishedList.map(book => 
+                                    <ListBookCard 
+                                        key={book['book_id'] ? book['book_id'] : undefined} 
+                                        title={book['title'] ? book['title'] : "N/A"}
+                                        author={book['author'] ? book['author'] : "N/A"}
+                                        publisher={book['publisher'] ? book['publisher'] : "N/A"} 
+                                        yearPublished={book['year'] ? book['year'] : "N/A"}
+                                        thumbnail={book['thumbnail']}  
+                                        industryID={book['identifier'] ? book['identifier'] : "N/A"}>
+                                    </ListBookCard>)}
                             </div>
                         
                             <div style={{borderColor: "#350888", borderStyle: "solid"}} className="d-flex flex-column align-items-center myCol col">
                                 <h3>Plan to Read</h3>
+                                {typeof wishList == 'undefined' ? <h5>No favorites</h5> : wishList.map(book => 
+                                    <ListBookCard 
+                                        key={book['book_id'] ? book['book_id'] : undefined} 
+                                        title={book['title'] ? book['title'] : "N/A"}
+                                        author={book['author'] ? book['author'] : "N/A"}
+                                        publisher={book['publisher'] ? book['publisher'] : "N/A"} 
+                                        yearPublished={book['year'] ? book['year'] : "N/A"}
+                                        thumbnail={book['thumbnail']}  
+                                        industryID={book['identifier'] ? book['identifier'] : "N/A"}>
+                                    </ListBookCard>)}
                             </div>
                     </div>
                 </div>
