@@ -37,6 +37,7 @@ h1, h3 {
     font-size: large;
     background-color: rgb(255 255 255 / 90%);
     border-radius: 10px;
-    padding: 4rem;
     overflow: scroll;
+    margin: 1rem;
+    padding: 1rem;
 }

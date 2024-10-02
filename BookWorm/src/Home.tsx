@@ -46,14 +46,14 @@ export default function Home() {
                         // console.log(res.data.data.items)
                         // console.log(typeof res.data.data.items)
                         setBookList(res.data.data.items)
-                        console.log(bookList)
+                        // console.log(bookList)
                     } 
                 })
                 .catch((error) => {
                     console.log(error.response.data.error)
                 });
         }
-        console.log(page)
+        // console.log(page)
      
     }, [page])
 
@@ -96,7 +96,7 @@ export default function Home() {
         event.preventDefault();
         acquireJwt();
         // console.log(jwt)
-        console.log(event.target.id)
+        // console.log(event.target.id)
         let page = "";
         switch(event.target.id) {
             case "myBooksBtn":
@@ -154,12 +154,12 @@ export default function Home() {
         event.preventDefault();
         // console.log(event.target.id);
         if(event.target.id == "prevBtn") {
-            console.log("prev")
+            // console.log("prev")
             if(page > 0) {
                 setPage(page - 1);
             }
         } else {
-            console.log("next")
+            // console.log("next")
             if(bookList.length == 10) {
                 setPage(page + 1);
 

@@ -26,7 +26,7 @@ export default function MyBooks() {
 
     useEffect(() => {
         if(jwt) {
-            console.log(jwt)
+            // console.log(jwt)
             axios
                 .get("http://localhost:3000/fav-books", {headers: {"authorization": "Bearer " + jwt}/*, params: {page: page * 10} */})
                 .then((res) => {
@@ -50,7 +50,7 @@ export default function MyBooks() {
         event.preventDefault();
         acquireJwt();
         // console.log(jwt)
-        console.log(event.target.id)
+        // console.log(event.target.id)
         let page = "";
         switch(event.target.id) {
             case "searchBooksBtn":
@@ -81,7 +81,7 @@ export default function MyBooks() {
     };
 
     return (
-        <div className="d-flex flex-column align-items-center py-4">
+        <div className="d-flex flex-column align-items-center py-4 w-75">
             <nav className="navbar d-flex w-100">
                 <form className="container-fluid justify-content-center">
                     {/* <button className="btn btn-outline-success me-3" type="button">My Books</button> */}
@@ -90,11 +90,11 @@ export default function MyBooks() {
                     <Link type="button" onClick={goToPage} className="btn" to={''} id="signOutBtn">Sign Out</Link>
                 </form>
             </nav>
-            <form className="d-flex flex-column align-items-center">
-                <h1 className="my-5">My Books</h1>
-                <div className="container">
+            <form className="d-flex flex-column align-items-center w-100 p-3">
+                <h1 className="my-3">My Books</h1>
+                <div className="container w-100">
                     <div className="row">
-                            <div style={{borderColor: "#350888", borderStyle: "solid"}} className="d-flex flex-column align-items-center myCol col-4">
+                            <div style={{borderColor: "#350888", borderStyle: "solid"}} className="d-flex flex-column align-items-center myCol col">
                                 <h3>Favorites</h3>
                                 {typeof favoriteList == 'undefined' ? <h5>No favorites</h5> : favoriteList.map(book => 
                                     <ListBookCard 
@@ -108,11 +108,11 @@ export default function MyBooks() {
                                     </ListBookCard>)}
                             </div>
                         
-                            <div className="d-flex flex-column align-items-center myCol col-4">
+                            <div style={{borderColor: "#350888", borderStyle: "solid"}} className="d-flex flex-column align-items-center myCol col">
                                 <h3>Finished Reading</h3>
                             </div>
                         
-                            <div className="d-flex flex-column align-items-center myCol col-4">
+                            <div style={{borderColor: "#350888", borderStyle: "solid"}} className="d-flex flex-column align-items-center myCol col">
                                 <h3>Plan to Read</h3>
                             </div>
                     </div>
