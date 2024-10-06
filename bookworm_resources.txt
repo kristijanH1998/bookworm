@@ -187,3 +187,8 @@ https://www.w3schools.com/js/js_switch.asp
 https://getbootstrap.com/docs/5.3/layout/gutters/
 https://stackoverflow.com/questions/48619381/react-how-to-use-child-formitem-components-without-getting-warning-validatedom
 
+https://fontawesome.com/v3/icon/trash
+https://www.w3schools.com/sql/sql_delete.asp
+https://stackoverflow.com/questions/47269189/css-class-for-pointer-cursor
+https://stackoverflow.com/questions/35185974/font-awesome-icon-with-an-onclick-event-set
+
