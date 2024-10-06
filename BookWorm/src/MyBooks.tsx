@@ -117,6 +117,11 @@ export default function MyBooks() {
         }
     };
 
+    const deleteBook = (event: any) => {
+        event.preventDefault();
+        // console.log("deleted");
+    };
+
     return (
         <div className="d-flex flex-column align-items-center py-4 w-75">
             <nav className="navbar d-flex w-100">
@@ -141,7 +146,8 @@ export default function MyBooks() {
                                         publisher={book['publisher'] ? book['publisher'] : "N/A"} 
                                         yearPublished={book['year'] ? book['year'] : "N/A"}
                                         thumbnail={book['thumbnail']}  
-                                        industryID={book['identifier'] ? book['identifier'] : "N/A"}>
+                                        industryID={book['identifier'] ? book['identifier'] : "N/A"}
+                                        onDelete={(event: any) => deleteBook(event)}>    
                                     </ListBookCard>)}
                             </div>
                         
@@ -155,7 +161,8 @@ export default function MyBooks() {
                                         publisher={book['publisher'] ? book['publisher'] : "N/A"} 
                                         yearPublished={book['year'] ? book['year'] : "N/A"}
                                         thumbnail={book['thumbnail']}  
-                                        industryID={book['identifier'] ? book['identifier'] : "N/A"}>
+                                        industryID={book['identifier'] ? book['identifier'] : "N/A"}
+                                        onDelete={(event: any) => deleteBook(event)}>
                                     </ListBookCard>)}
                             </div>
                         
@@ -169,7 +176,8 @@ export default function MyBooks() {
                                         publisher={book['publisher'] ? book['publisher'] : "N/A"} 
                                         yearPublished={book['year'] ? book['year'] : "N/A"}
                                         thumbnail={book['thumbnail']}  
-                                        industryID={book['identifier'] ? book['identifier'] : "N/A"}>
+                                        industryID={book['identifier'] ? book['identifier'] : "N/A"}
+                                        onDelete={(event: any) => deleteBook(event)}>
                                     </ListBookCard>)}
                             </div>
                     </div>
