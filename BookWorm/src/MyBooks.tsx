@@ -10,6 +10,7 @@ export default function MyBooks() {
     const [favoriteList, setFavoriteList] = useState<object[]>([]);
     const [finishedList, setFinishedList] = useState<object[]>([]);
     const [wishList, setWishList] = useState<object[]>([]);
+    const [bookRemoved, setBookRemoved] = useState<Boolean>(true);
 
     function acquireJwt () {
         if(localStorage.getItem("jwt")) {
@@ -44,7 +45,7 @@ export default function MyBooks() {
                 });
         }
         // console.log(page)
-    }, [jwt])
+    }, [jwt, bookRemoved])
 
     useEffect(() => {
         if(jwt) {
@@ -62,7 +63,7 @@ export default function MyBooks() {
                     console.log(error.response.data.error)
                 });
         }
-    }, [jwt])
+    }, [jwt, bookRemoved])
 
     useEffect(() => {
         if(jwt) {
@@ -80,7 +81,7 @@ export default function MyBooks() {
                     console.log(error.response.data.error)
                 });
         }
-    }, [jwt])
+    }, [jwt, bookRemoved])
 
     const navigate = useNavigate();
     const goToPage = (event: any) => {
@@ -117,9 +118,37 @@ export default function MyBooks() {
         }
     };
 
-    const deleteBook = (event: any) => {
+    const deleteBook = (event: any, category: String, identifier: String) => {
         event.preventDefault();
         // console.log("deleted");
+        // console.log(category);
+        let table = "";
+        switch(category) {
+            case "favorites":
+                table = "favorite";
+                break;
+            case "finished":
+                table = "finished_reading";
+                break;
+            case "wishlist":
+                table = "wishlist";
+                break;
+        }
+        axios
+            .delete("http://localhost:3000/delete", {headers: {"authorization": "Bearer " + jwt}, params: {"identifier": identifier, "table": table}})
+            .then((res) => {
+                if (res.data.success) {
+                    // console.log(res.data.data)
+                    // console.log(typeof res.data.data.items)
+                    // console.log("book deleted");
+                    // console.log(favoriteList)
+                } 
+            })
+            .catch((error) => {
+                console.log(error.response.data.error)
+            });
+        setBookRemoved(!bookRemoved);
+        // console.log(bookRemoved);
     };
 
     return (
@@ -147,7 +176,7 @@ export default function MyBooks() {
                                         yearPublished={book['year'] ? book['year'] : "N/A"}
                                         thumbnail={book['thumbnail']}  
                                         industryID={book['identifier'] ? book['identifier'] : "N/A"}
-                                        onDelete={(event: any) => deleteBook(event)}>    
+                                        onDelete={(event: any) => deleteBook(event, "favorites", book['identifier'])}>    
                                     </ListBookCard>)}
                             </div>
                         
@@ -162,7 +191,7 @@ export default function MyBooks() {
                                         yearPublished={book['year'] ? book['year'] : "N/A"}
                                         thumbnail={book['thumbnail']}  
                                         industryID={book['identifier'] ? book['identifier'] : "N/A"}
-                                        onDelete={(event: any) => deleteBook(event)}>
+                                        onDelete={(event: any) => deleteBook(event, "finished", book['identifier'])}>
                                     </ListBookCard>)}
                             </div>
                         
@@ -177,7 +206,7 @@ export default function MyBooks() {
                                         yearPublished={book['year'] ? book['year'] : "N/A"}
                                         thumbnail={book['thumbnail']}  
                                         industryID={book['identifier'] ? book['identifier'] : "N/A"}
-                                        onDelete={(event: any) => deleteBook(event)}>
+                                        onDelete={(event: any) => deleteBook(event, "wishlist", book['identifier'])}>
                                     </ListBookCard>)}
                             </div>
                     </div>
