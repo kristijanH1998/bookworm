@@ -192,3 +192,7 @@ https://www.w3schools.com/sql/sql_delete.asp
 https://stackoverflow.com/questions/47269189/css-class-for-pointer-cursor
 https://stackoverflow.com/questions/35185974/font-awesome-icon-with-an-onclick-event-set
 
+https://github.com/OpenAPITools/openapi-generator/issues/10864
+https://stackoverflow.com/questions/927358/how-do-i-undo-the-most-recent-local-commits-in-git
+
+
