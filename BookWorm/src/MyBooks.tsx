@@ -157,7 +157,7 @@ export default function MyBooks() {
                 <form className="container-fluid justify-content-center">
                     {/* <button className="btn btn-outline-success me-3" type="button">My Books</button> */}
                     <Link type="button" onClick={goToPage} className="btn me-3" to={'/home'} id="searchBooksBtn">Search Books</Link>
-                    <button className="btn btn-outline-secondary me-3" type="button" id="myProfileBtn">My Profile</button>
+                    <Link type="button" onClick={goToPage} className="btn me-3" to={'/my-profile'} id="myProfileBtn">My Profile</Link>
                     <Link type="button" onClick={goToPage} className="btn" to={''} id="signOutBtn">Sign Out</Link>
                 </form>
             </nav>

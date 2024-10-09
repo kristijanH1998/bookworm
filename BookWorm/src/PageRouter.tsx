@@ -9,6 +9,7 @@ import Login from "./Login.js"
 import Register from "./Register.jsx"
 import Home from "./Home.js"
 import MyBooks from "./MyBooks.jsx"
+import MyProfile from "./MyProfile.jsx"
 import React from "react";
 
 const router = createBrowserRouter(
@@ -18,6 +19,7 @@ createRoutesFromElements(
     <Route path="register" element={<Register />} />
     <Route path="/home" element={<Home />} />
     <Route path="/my-books" element={<MyBooks />} />
+    <Route path="/my-profile" element={<MyProfile />} />
     </>
 )
 );
