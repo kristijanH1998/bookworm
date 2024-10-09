@@ -56,7 +56,7 @@ export default function MyProfile() {
     
     
     return (
-        <div>
+        <div className="d-flex flex-column align-items-center py-4 w-75">
             <div className="d-flex flex-column align-items-center py-4 w-75">
             <nav className="navbar d-flex w-100">
                 <form className="container-fluid justify-content-center">
@@ -68,9 +68,59 @@ export default function MyProfile() {
             </nav>
             <form className="d-flex flex-column align-items-center w-100 p-3">
                 <h1 className="my-3">My Profile</h1>
-                <div className="container w-100">
+                <div className="container w-75">
                     <div className="row">
-                                
+                    
+                    
+                        <div className="mb-3">
+                            <label htmlFor="basic-url" className="form-label">Email Address</label>
+                            <div className="input-group">
+                                <span className="input-group-text" id="basic-addon3">email</span>
+                                <input type="text" className="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4"/>
+                                <button className="btn btn-outline-secondary" type="button" id="button-addon2">Update</button>
+                            </div>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="basic-url" className="form-label">Username</label>
+                            <div className="input-group">
+                                <span className="input-group-text" id="basic-addon3">username</span>
+                                <input type="text" className="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4"/>
+                                <button className="btn btn-outline-secondary" type="button" id="button-addon2">Update</button>
+                            </div>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="basic-url" className="form-label">First Name</label>
+                            <div className="input-group">
+                                <span className="input-group-text" id="basic-addon3">First Name</span>
+                                <input type="text" className="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4"/>
+                                <button className="btn btn-outline-secondary" type="button" id="button-addon2">Update</button>
+                            </div>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="basic-url" className="form-label">Last Name</label>
+                            <div className="input-group">
+                                <span className="input-group-text" id="basic-addon3">Last Name</span>
+                                <input type="text" className="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4"/>
+                                <button className="btn btn-outline-secondary" type="button" id="button-addon2">Update</button>
+                            </div>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="basic-url" className="form-label">Date of Birth</label>
+                            <div className="input-group">
+                                <span className="input-group-text" id="basic-addon3">Date of Birth</span>
+                                <input type="text" className="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4"/>
+                                <button className="btn btn-outline-secondary" type="button" id="button-addon2">Update</button>
+                            </div>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="basic-url" className="form-label">Password</label>
+                            <div className="input-group">
+                                <span className="input-group-text" id="basic-addon3">Password</span>
+                                <input type="text" className="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4"/>
+                                <button className="btn btn-outline-secondary" type="button" id="button-addon2">Update</button>
+                            </div>
+                        </div>
+   
                     </div>
                 </div>
             </form>
