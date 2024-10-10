@@ -68,56 +68,50 @@ export default function MyProfile() {
             </nav>
             <form className="d-flex flex-column align-items-center w-100 p-3">
                 <h1 className="my-3">My Profile</h1>
-                <div className="container w-75">
+                <div className="container w-100">
                     <div className="row">
-                    
-                    
                         <div className="mb-3">
-                            <label htmlFor="basic-url" className="form-label">Email Address</label>
+                            <label  className="form-label">Email Address</label>
                             <div className="input-group">
-                                <span className="input-group-text" id="basic-addon3">email</span>
-                                <input type="text" className="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4"/>
-                                <button className="btn btn-outline-secondary" type="button" id="button-addon2">Update</button>
+                                <span className="input-group-text w-100">Email</span>
                             </div>
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="basic-url" className="form-label">Username</label>
+                            <label  className="form-label">Username</label>
                             <div className="input-group">
-                                <span className="input-group-text" id="basic-addon3">username</span>
-                                <input type="text" className="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4"/>
-                                <button className="btn btn-outline-secondary" type="button" id="button-addon2">Update</button>
+                                <span className="input-group-text w-100">Username</span>
                             </div>
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="basic-url" className="form-label">First Name</label>
+                            <label  className="form-label">First Name</label>
                             <div className="input-group">
-                                <span className="input-group-text" id="basic-addon3">First Name</span>
-                                <input type="text" className="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4"/>
-                                <button className="btn btn-outline-secondary" type="button" id="button-addon2">Update</button>
+                                <span className="input-group-text w-50">First Name</span>
+                                <input type="text" className="form-control" placeholder="Type here to change your First Name"/>
+                                <button className="btn btn-outline-secondary" type="button">Update</button>
                             </div>
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="basic-url" className="form-label">Last Name</label>
+                            <label  className="form-label">Last Name</label>
                             <div className="input-group">
-                                <span className="input-group-text" id="basic-addon3">Last Name</span>
-                                <input type="text" className="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4"/>
-                                <button className="btn btn-outline-secondary" type="button" id="button-addon2">Update</button>
+                                <span className="input-group-text w-50" >Last Name</span>
+                                <input type="text" className="form-control" placeholder="Type here to change your Last Name"/>
+                                <button className="btn btn-outline-secondary" type="button">Update</button>
                             </div>
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="basic-url" className="form-label">Date of Birth</label>
+                            <label className="form-label">Date of Birth</label>
                             <div className="input-group">
-                                <span className="input-group-text" id="basic-addon3">Date of Birth</span>
-                                <input type="text" className="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4"/>
-                                <button className="btn btn-outline-secondary" type="button" id="button-addon2">Update</button>
+                                <span className="input-group-text w-50">Date of Birth</span>
+                                <input type="text" onFocus={(event) => {event.target.type="date"}} onBlur={(event) => {event.target.type="text"}} className="form-control" placeholder="Click here to change your DoB"/>
+                                <button className="btn btn-outline-secondary" type="button">Update</button>
                             </div>
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="basic-url" className="form-label">Password</label>
+                            <label className="form-label">Password</label>
                             <div className="input-group">
-                                <span className="input-group-text" id="basic-addon3">Password</span>
-                                <input type="text" className="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4"/>
-                                <button className="btn btn-outline-secondary" type="button" id="button-addon2">Update</button>
+                                <input type="password" name="password" className="form-control" placeholder="To change Password, enter your Current Password"/>
+                                <input type="password" name="password" className="form-control" placeholder="Now enter your New Password"/>
+                                <button className="btn btn-outline-secondary" type="button">Submit</button>
                             </div>
                         </div>
    
