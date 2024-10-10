@@ -195,5 +195,9 @@ https://stackoverflow.com/questions/35185974/font-awesome-icon-with-an-onclick-e
 https://github.com/OpenAPITools/openapi-generator/issues/10864
 https://stackoverflow.com/questions/927358/how-do-i-undo-the-most-recent-local-commits-in-git
 https://getbootstrap.com/docs/5.3/forms/input-group/#basic-example
-
+https://stackoverflow.com/questions/11929138/how-to-present-asterisk-when-entering-a-password-in-index-html
+https://stackoverflow.com/questions/37609049/how-to-correctly-catch-change-focusout-event-on-text-input-in-react-js
+https://www.geeksforgeeks.org/react-onfocus-event/
+https://www.geeksforgeeks.org/how-to-set-placeholder-value-for-input-type-date-in-html-5/
+https://www.w3schools.com/tags/att_input_placeholder.asp
 
