@@ -46,41 +46,41 @@ export default function Register() {
         return setError("Please ensure all fields are valid.");
         }
         axios
-        .post("http://localhost:3000/register", {
-            username,
-            email,
-            password,
-            firstName: firstName,
-            lastName: lastName,
-            dateOfBirth: dateOfBirth,
-        })
-        .then((regRes) => {
-            if(regRes.data.success) {
-                axios.post("http://localhost:3000/log-in", { email, password })
-                // .then((res) => {
-                //     axios
-                //     .put("http://localhost:8080/profile/archive")
-                //     .catch((error) => {
-                //         console.log(error.response.data.error);
-                //     });
-                // })
-                .then((logRes) => {
-                    if (logRes.data.success) {
-                        localStorage.setItem("jwt", logRes.data.jwt);
-                        // console.log(res.data.jwt)
-                        navigate("/home");
-                    }
-                })
-                .catch((error) => {
-                    console.log(error.response.data.error);
-                    setError(error.response.data.error);
-                });
-            }
-        })
-        .catch((error) => {
-            setError(error.response.data.error)
-            console.log(error.response);
-        });
+            .post("http://localhost:3000/register", {
+                username,
+                email,
+                password,
+                firstName: firstName,
+                lastName: lastName,
+                dateOfBirth: dateOfBirth,
+            })
+            .then((regRes) => {
+                if(regRes.data.success) {
+                    axios.post("http://localhost:3000/log-in", { email, password })
+                    // .then((res) => {
+                    //     axios
+                    //     .put("http://localhost:8080/profile/archive")
+                    //     .catch((error) => {
+                    //         console.log(error.response.data.error);
+                    //     });
+                    // })
+                    .then((logRes) => {
+                        if (logRes.data.success) {
+                            localStorage.setItem("jwt", logRes.data.jwt);
+                            // console.log(res.data.jwt)
+                            navigate("/home");
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error.response.data.error);
+                        setError(error.response.data.error);
+                    });
+                }
+            })
+            .catch((error) => {
+                setError(error.response.data.error)
+                console.log(error.response);
+            });
     };
 
     return (

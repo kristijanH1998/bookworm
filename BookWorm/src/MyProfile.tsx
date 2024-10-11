@@ -54,6 +54,27 @@ export default function MyProfile() {
         }
     };
     
+    function updateUser(event: any, attribute: String) {
+        // console.log(event.target);
+        // console.log(attribute);
+        // console.log(event.target.previousElementSibling.value);
+        event.preventDefault();
+        acquireJwt();
+        const value = event.target.previousElementSibling.value;
+        axios
+            .put("http://localhost:3000/update-user", {attribute, value}, {headers: {"authorization": "Bearer " + jwt}})
+            .then((res) => {
+                if(res.data.success) {
+                    alert("User successfully updated.");
+                    event.target.previousElementSibling.value = "";
+                }
+            })
+            .catch((error) => {
+                console.log(error.response.data.error);
+                alert("Failed to update user.");
+            });
+    }
+
     useEffect(() => {
         acquireJwt();
     },[])
@@ -107,7 +128,7 @@ export default function MyProfile() {
                                 <div className="input-group">
                                     <span className="input-group-text w-50">{userData["first_name"] ? userData["first_name"] : "N/A"}</span>
                                     <input type="text" className="form-control" placeholder="Type here to change your First Name"/>
-                                    <button className="btn btn-outline-secondary" type="button">Update</button>
+                                    <button className="btn btn-outline-secondary" type="button" onClick={(event) => updateUser(event, "first_name")}>Update</button>
                                 </div>
                             </div>
                             <div className="mb-3">
@@ -115,7 +136,7 @@ export default function MyProfile() {
                                 <div className="input-group">
                                     <span className="input-group-text w-50" >{userData["last_name"] ? userData["last_name"] : "N/A"}</span>
                                     <input type="text" className="form-control" placeholder="Type here to change your Last Name"/>
-                                    <button className="btn btn-outline-secondary" type="button">Update</button>
+                                    <button className="btn btn-outline-secondary" type="button" onClick={(event) => updateUser(event, "last_name")}>Update</button>
                                 </div>
                             </div>
                             <div className="mb-3">
@@ -123,7 +144,7 @@ export default function MyProfile() {
                                 <div className="input-group">
                                     <span className="input-group-text w-50">{userData["date_of_birth"] ? userData["date_of_birth"].substring(0, 10) : "N/A"}</span>
                                     <input type="text" onFocus={(event) => {event.target.type="date"}} onBlur={(event) => {event.target.type="text"}} className="form-control" placeholder="Click here to change your DoB"/>
-                                    <button className="btn btn-outline-secondary" type="button">Update</button>
+                                    <button className="btn btn-outline-secondary" type="button" onClick={(event) => updateUser(event, "date_of_birth")}>Update</button>
                                 </div>
                             </div>
                             <div className="mb-3">
