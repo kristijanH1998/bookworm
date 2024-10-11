@@ -200,4 +200,9 @@ https://stackoverflow.com/questions/37609049/how-to-correctly-catch-change-focus
 https://www.geeksforgeeks.org/react-onfocus-event/
 https://www.geeksforgeeks.org/how-to-set-placeholder-value-for-input-type-date-in-html-5/
 https://www.w3schools.com/tags/att_input_placeholder.asp
+https://stackoverflow.com/questions/18084595/how-to-decrypt-hash-stored-by-bcrypt
+https://www.w3schools.com/sql/sql_top.asp
+https://www.w3schools.com/jsref/jsref_substring.asp
+https://www.w3schools.com/sql/sql_update.asp
+https://stackoverflow.com/questions/47355150/how-do-i-format-timestamp-as-mm-dd-yyyy-in-postman
 
