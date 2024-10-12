@@ -62,6 +62,10 @@ export default function MyProfile() {
         event.preventDefault();
         acquireJwt();
         const value = event.target.previousElementSibling.value;
+        if(!(/\S/.test(value))) {
+            alert("Value not accepted. Try again.");
+            return;
+        }
         axios
             .put("http://localhost:3000/update-user", {attribute, value}, {headers: {"authorization": "Bearer " + jwt}})
             .then((res) => {
@@ -154,7 +158,7 @@ export default function MyProfile() {
                                 <div className="input-group">
                                     <input type="password" name="password" className="form-control" placeholder="To change Password, enter your Current Password"/>
                                     <input type="password" name="password" className="form-control" placeholder="Now enter your New Password"/>
-                                    <button className="btn btn-outline-secondary" type="button">Submit</button>
+                                    <button className="btn btn-outline-secondary" type="button">Change Password</button>
                                 </div>
                             </div>
     
