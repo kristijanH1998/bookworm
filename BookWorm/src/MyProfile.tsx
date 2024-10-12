@@ -7,6 +7,7 @@ export default function MyProfile() {
     
     const [jwt, setJwt] = useState<string | null>("");
     const [userData, setUserData] = useState<object>({});
+    const [userUpdated, setUserUpdated] = useState<Boolean>(false);
 
     function acquireJwt () {
         if(localStorage.getItem("jwt")) {
@@ -66,6 +67,7 @@ export default function MyProfile() {
             .then((res) => {
                 if(res.data.success) {
                     alert("User successfully updated.");
+                    setUserUpdated(!userUpdated);
                     event.target.previousElementSibling.value = "";
                 }
             })
@@ -94,7 +96,7 @@ export default function MyProfile() {
                     console.log(error.response.data.error)
                 });
         }
-    }, [jwt])
+    }, [jwt, userUpdated])
     
     return (
         <div className="d-flex flex-column align-items-center py-4 w-75">
