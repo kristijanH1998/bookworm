@@ -156,12 +156,11 @@ export default function MyProfile() {
                             <div className="mb-3">
                                 <label className="form-label">Password:</label>
                                 <div className="input-group">
-                                    <input type="password" name="password" className="form-control" placeholder="To change Password, enter your Current Password"/>
-                                    <input type="password" name="password" className="form-control" placeholder="Now enter your New Password"/>
+                                    <input type="password" name="password" className="form-control" placeholder="Current Password"/>
+                                    <input type="password" name="password" className="form-control" placeholder="New Password"/>
                                     <button className="btn btn-outline-secondary" type="button">Change Password</button>
                                 </div>
                             </div>
-    
                         </div>
                     </div>
                 </form>
