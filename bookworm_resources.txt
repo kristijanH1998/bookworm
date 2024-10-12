@@ -205,4 +205,6 @@ https://www.w3schools.com/sql/sql_top.asp
 https://www.w3schools.com/jsref/jsref_substring.asp
 https://www.w3schools.com/sql/sql_update.asp
 https://stackoverflow.com/questions/47355150/how-do-i-format-timestamp-as-mm-dd-yyyy-in-postman
+https://developer.mozilla.org/en-US/docs/Web/API/Element/previousElementSibling
+https://stackoverflow.com/questions/2031085/how-can-i-check-if-string-contains-characters-whitespace-not-just-whitespace
 
