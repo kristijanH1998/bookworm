@@ -81,6 +81,34 @@ export default function MyProfile() {
             });
     }
 
+    function updatePassword(event: any) {
+        event.preventDefault();
+        acquireJwt();
+        const newPassword = event.target.previousElementSibling.value;
+        const currentPassword = event.target.previousElementSibling.previousElementSibling.value;
+        // console.log(currentPassword);
+        // console.log(newPassword);
+        if(!(/\S/.test(currentPassword)) || !(/\S/.test(newPassword)) || 
+            (currentPassword.length < 7) || (newPassword.length < 7) ||
+            (currentPassword === newPassword)) {
+            alert("Passwords not accepted. Try again.");
+            return;
+        }
+        axios
+            .put("http://localhost:3000/update-password", {"oldPassword": currentPassword, "newPassword": newPassword}, {headers: {"authorization": "Bearer " + jwt}})
+            .then((res) => {
+                if(res.data.success) {
+                    alert("Password successfully updated.");
+                    event.target.previousElementSibling.value = "";
+                    event.target.previousElementSibling.previousElementSibling.value = "";
+                }
+            })
+            .catch((error) => {
+                console.log(error.response.data.error);
+                alert("Failed to update password.");
+            });
+    }
+
     useEffect(() => {
         acquireJwt();
     },[])
@@ -158,7 +186,7 @@ export default function MyProfile() {
                                 <div className="input-group">
                                     <input type="password" name="password" className="form-control" placeholder="Current Password"/>
                                     <input type="password" name="password" className="form-control" placeholder="New Password"/>
-                                    <button className="btn btn-outline-secondary" type="button">Change Password</button>
+                                    <button className="btn btn-outline-secondary" type="button" onClick={(event) => updatePassword(event)}>Change Password</button>
                                 </div>
                             </div>
                         </div>
