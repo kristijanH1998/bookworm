@@ -54,7 +54,6 @@ export default function Home() {
                 });
         }
         // console.log(page)
-     
     }, [page])
 
     //makes viewer canvas load contents of a book whose identifier number was received as parameter 'identifier'

@@ -14,18 +14,18 @@ import React from "react";
 
 const router = createBrowserRouter(
 createRoutesFromElements(
-    <>
-    <Route path="/" element={<Login />} />
-    <Route path="register" element={<Register />} />
-    <Route path="/home" element={<Home />} />
-    <Route path="/my-books" element={<MyBooks />} />
-    <Route path="/my-profile" element={<MyProfile />} />
-    </>
-)
+        <>
+        <Route path="/" element={<Login />} />
+        <Route path="register" element={<Register />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/my-books" element={<MyBooks />} />
+        <Route path="/my-profile" element={<MyProfile />} />
+        </>
+    )
 );
 
 export default function PageRouter() {
 return (
-    <RouterProvider router={router} />
-)
+        <RouterProvider router={router} />
+    )
 }
