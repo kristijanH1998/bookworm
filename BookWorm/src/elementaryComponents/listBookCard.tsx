@@ -1,5 +1,6 @@
 import React from "react";
 
+// React component serving as a card for each book stored in one of three book category tables in the local MySQL database (favorites, wishlist, finished reading)
 export default function ListBookCard(props: any) {
     return(
         <div className="card mb-3 mt-3 w-100" style={{width: "800px", height: "200px"}}>

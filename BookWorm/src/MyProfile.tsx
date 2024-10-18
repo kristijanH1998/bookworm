@@ -9,6 +9,7 @@ export default function MyProfile() {
     const [userData, setUserData] = useState<object>({});
     const [userUpdated, setUserUpdated] = useState<Boolean>(false);
 
+    // Saving the JWT key from local storage into jwt state variable
     function acquireJwt () {
         if(localStorage.getItem("jwt")) {
             let temp = localStorage.getItem("jwt")
@@ -18,7 +19,7 @@ export default function MyProfile() {
             return;
         }
     }
-    
+    // Handles navigating over webpages on BookWorm, and hits /log-out endpoint when user clicks on Sign Out button
     const navigate = useNavigate();
     const goToPage = (event: any) => {
         event.preventDefault();
@@ -52,6 +53,7 @@ export default function MyProfile() {
         }
     };
     
+    // Handles updating user account values by activating /update-user endpoint and refreshes user account data by resetting userUpdated state variable 
     function updateUser(event: any, attribute: String) {
         event.preventDefault();
         acquireJwt();
@@ -75,6 +77,7 @@ export default function MyProfile() {
             });
     }
 
+    // Handles updating account password by activating the /update-password endpoint and verifying that entered values satisfy password standards
     function updatePassword(event: any) {
         event.preventDefault();
         acquireJwt();
@@ -101,10 +104,12 @@ export default function MyProfile() {
             });
     }
 
+    // Acquires JWT key from local storage as soon as the page loads
     useEffect(() => {
         acquireJwt();
     },[])
 
+    // Fetches user account data by calling /user-data endpoint; re-activates each time any user account attribute is changed
     useEffect(() => {
         if(jwt) { 
             axios

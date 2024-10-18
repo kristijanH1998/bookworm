@@ -12,6 +12,7 @@ export default function Home() {
     const [scriptLoaded, setScriptLoaded] = useState(false);
     const [page, setPage] = useState<number>(0);
 
+    // On page load, Google Books jsapi.js script is loaded to enable displaying Google Books Embedded Viewer window
     useEffect(() => {
         acquireJwt();
         const script = document.createElement('script');
@@ -21,15 +22,18 @@ export default function Home() {
         document.body.appendChild(script);
     },[])
 
+    // On page load, google.books.load() runs to enable the Embedded Viewer content
     useEffect(() => {
         if(!scriptLoaded) return;
         google.books.load();
     }, [scriptLoaded]);
 
+    // If the selected book cannot be embedded, appropriate alert message appears
     function alertNotFound() {
         alert("could not embed the book!");
     }
 
+    // When user clicks on Previous or Next buttons to page through the Google Books API data, new call to /search-books endpoint is made to fetch next/previous batch of results 
     useEffect(() => {
         if(jwt && page >= 0) {
             acquireJwt();
@@ -46,7 +50,7 @@ export default function Home() {
         }
     }, [page])
 
-    //makes viewer canvas load contents of a book whose identifier number was received as parameter 'identifier'
+    // Makes viewer canvas load contents of a book whose identifier number was received as parameter 'identifier'
     function initialize(identifier: any) {
         if(typeof identifier != "undefined") {
             const iden = identifier[0]['identifier'];
@@ -59,6 +63,7 @@ export default function Home() {
         }
     }
 
+    // Saving the JWT key from local storage into jwt state variable
     function acquireJwt () {
         if(localStorage.getItem("jwt")) {
             let temp = localStorage.getItem("jwt")
@@ -69,15 +74,18 @@ export default function Home() {
         }
     }
 
+    // Depending on radio button for search criteria selected, appropriate placeholder appears in the search bar
     const onRadioChange = (e: any) => {
         setSearchPlaceholder(e.target.value)
     }
 
+    // Search phrase user typed into the search bar is saved into searchPhrase state variable
     const handlePhraseChange = (event: any) => {
         event.preventDefault(); 
         setSearchPhrase(event.target.value);
     }
 
+    // Enables navigating to all pages on BookWorm, including signing out
     const navigate = useNavigate();
     const goToPage = (event: any) => {
         event.preventDefault();
@@ -111,7 +119,7 @@ export default function Home() {
         }
     };
 
-    //runs when Search button is clicked; calls Google Books API with headers and parameters specified below
+    // Runs when Search button is clicked; calls Google Books API with headers and parameters specified below
     const handleSearch = (event: any) => {
         event.preventDefault();
         acquireJwt();
@@ -129,7 +137,7 @@ export default function Home() {
             });
     };
 
-    //runs when Next and Previous buttons are clicked, to fetch next or previous group of 10 output results (from Google Books API)
+    // Runs when Next and Previous buttons are clicked, and updates state varialbe 'page' needed for fetching next or previous group of 10 output results (from Google Books API)
     const updatePage = (event: any) => {
         event.preventDefault();
         if(event.target.id == "prevBtn") {
@@ -143,6 +151,7 @@ export default function Home() {
         }
     }
 
+    // Hits the /add-to-list endpoint when one of three book category (favorite, wishlist, finished reading) buttons on some book card is clicked
     const addToList = (event: any, title: any, author: any, publisher: any, year: any, identifier: any, thumbnail: any) => {
         event.preventDefault();
         acquireJwt();

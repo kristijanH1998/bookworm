@@ -28,7 +28,7 @@ export default function Register() {
         setError("");
     };
 
-    // Handles form submission
+    // Handles form submission: registers the user with their new account on BookWorm, and logs them in automatically upon account creation
     const handleSubmit = (e: any) => {
         e.preventDefault();
         if (

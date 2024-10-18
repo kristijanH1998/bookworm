@@ -11,12 +11,13 @@ export default function Login() {
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
-    // Handles input changes and saves it to state
+    // Handles input changes and saves them to state
     const handleChange = (setState: any) => (event: any) => {
         setState(event.target.value);
         setError("");
     };
 
+    // Activates when user clicks on Submit button, calls /log-in endpoint and sends it required email and password
     const handleSubmit = (e: any) => {
         e.preventDefault();
         axios

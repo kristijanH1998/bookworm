@@ -1,5 +1,6 @@
 import React from "react";
 
+// React component serving as a card for each book fetched from Google Books API database
 export default function BookCard(props: any) {
     return(
         <div className="card mb-3 mt-3" style={{width: "650px", height: "350px"}}>

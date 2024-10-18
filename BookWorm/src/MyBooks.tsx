@@ -12,6 +12,7 @@ export default function MyBooks() {
     const [wishList, setWishList] = useState<object[]>([]);
     const [bookRemoved, setBookRemoved] = useState<Boolean>(true);
 
+    // Saving the JWT key from local storage into jwt state variable
     function acquireJwt () {
         if(localStorage.getItem("jwt")) {
             let temp = localStorage.getItem("jwt")
@@ -22,10 +23,12 @@ export default function MyBooks() {
         }
     }
     
+    // As soon as page loads, acquire JWT key from local storage by calling acquireJwt()
     useEffect(() => {
         acquireJwt();
     },[])
 
+    // Whenever a book is removed from one of three book category lists (favorites, wishlist, finished reading), re-fetch list of favorite books and display it 
     useEffect(() => {
         if(jwt) {
             axios
@@ -41,6 +44,7 @@ export default function MyBooks() {
         }
     }, [jwt, bookRemoved])
 
+    // Whenever a book is removed from one of three book category lists (favorites, wishlist, finished reading), re-fetch list of finished books and display it 
     useEffect(() => {
         if(jwt) {
             axios
@@ -56,6 +60,7 @@ export default function MyBooks() {
         }
     }, [jwt, bookRemoved])
 
+    // Whenever a book is removed from one of three book category lists (favorites, wishlist, finished reading), re-fetch list of wishlist books and display it 
     useEffect(() => {
         if(jwt) {
             axios
@@ -71,6 +76,7 @@ export default function MyBooks() {
         }
     }, [jwt, bookRemoved])
 
+    // Handles navigating over webpages on BookWorm, and hits /log-out endpoint when user clicks on Sign Out button
     const navigate = useNavigate();
     const goToPage = (event: any) => {
         event.preventDefault();
@@ -104,6 +110,7 @@ export default function MyBooks() {
         }
     };
 
+    // Handles removing books from each of three book category lists (favorite, wishlist, finished reading) by activating /delete endpoint and resetting bookRemoved state variable
     const deleteBook = (event: any, category: String, identifier: String) => {
         event.preventDefault();
         let table = "";
