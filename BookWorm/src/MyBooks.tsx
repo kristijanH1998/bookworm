@@ -16,9 +16,8 @@ export default function MyBooks() {
         if(localStorage.getItem("jwt")) {
             let temp = localStorage.getItem("jwt")
             setJwt(temp);
-            // console.log(jwt)
         } else {
-            console.log("You are not signed in.");
+            alert("You are not signed in.");
             return;
         }
     }
@@ -29,22 +28,17 @@ export default function MyBooks() {
 
     useEffect(() => {
         if(jwt) {
-            // console.log(jwt)
             axios
                 .get("http://localhost:3000/fav-books", {headers: {"authorization": "Bearer " + jwt}/*, params: {page: page * 10} */})
                 .then((res) => {
                     if (res.data.success) {
-                        // console.log(res.data.data)
-                        // console.log(typeof res.data.data.items)
                         setFavoriteList(res.data.data)
-                        // console.log(favoriteList)
                     } 
                 })
                 .catch((error) => {
                     console.log(error.response.data.error)
                 });
         }
-        // console.log(page)
     }, [jwt, bookRemoved])
 
     useEffect(() => {
@@ -53,10 +47,7 @@ export default function MyBooks() {
                 .get("http://localhost:3000/finished-books", {headers: {"authorization": "Bearer " + jwt}/*, params: {page: page * 10} */})
                 .then((res) => {
                     if (res.data.success) {
-                        // console.log(res.data.data)
-                        // console.log(typeof res.data.data.items)
                         setFinishedList(res.data.data)
-                        // console.log(favoriteList)
                     } 
                 })
                 .catch((error) => {
@@ -71,10 +62,7 @@ export default function MyBooks() {
                 .get("http://localhost:3000/wishlist", {headers: {"authorization": "Bearer " + jwt}/*, params: {page: page * 10} */})
                 .then((res) => {
                     if (res.data.success) {
-                        // console.log(res.data.data)
-                        // console.log(typeof res.data.data.items)
                         setWishList(res.data.data)
-                        // console.log(favoriteList)
                     } 
                 })
                 .catch((error) => {
@@ -87,8 +75,6 @@ export default function MyBooks() {
     const goToPage = (event: any) => {
         event.preventDefault();
         acquireJwt();
-        // console.log(jwt)
-        // console.log(event.target.id)
         let page = "";
         switch(event.target.id) {
             case "searchBooksBtn":
@@ -120,8 +106,6 @@ export default function MyBooks() {
 
     const deleteBook = (event: any, category: String, identifier: String) => {
         event.preventDefault();
-        // console.log("deleted");
-        // console.log(category);
         let table = "";
         switch(category) {
             case "favorites":
@@ -138,24 +122,19 @@ export default function MyBooks() {
             .delete("http://localhost:3000/delete", {headers: {"authorization": "Bearer " + jwt}, params: {"identifier": identifier, "table": table}})
             .then((res) => {
                 if (res.data.success) {
-                    // console.log(res.data.data)
-                    // console.log(typeof res.data.data.items)
-                    // console.log("book deleted");
-                    // console.log(favoriteList)
+                    alert("book deleted");
                 } 
             })
             .catch((error) => {
                 console.log(error.response.data.error)
             });
         setBookRemoved(!bookRemoved);
-        // console.log(bookRemoved);
     };
 
     return (
         <div className="d-flex flex-column align-items-center py-4 w-75">
             <nav className="navbar d-flex w-100">
                 <form className="container-fluid justify-content-center">
-                    {/* <button className="btn btn-outline-success me-3" type="button">My Books</button> */}
                     <Link type="button" onClick={goToPage} className="btn me-3" to={'/home'} id="searchBooksBtn">Search Books</Link>
                     <Link type="button" onClick={goToPage} className="btn me-3" to={'/my-profile'} id="myProfileBtn">My Profile</Link>
                     <Link type="button" onClick={goToPage} className="btn" to={''} id="signOutBtn">Sign Out</Link>
@@ -179,7 +158,6 @@ export default function MyBooks() {
                                         onDelete={(event: any) => deleteBook(event, "favorites", book['identifier'])}>    
                                     </ListBookCard>)}
                             </div>
-                        
                             <div style={{borderColor: "#350888", borderStyle: "solid"}} className="d-flex flex-column align-items-center myCol col">
                                 <h3>Finished Reading</h3>
                                 {typeof finishedList == 'undefined' ? <h5>No favorites</h5> : finishedList.map(book => 
@@ -194,7 +172,6 @@ export default function MyBooks() {
                                         onDelete={(event: any) => deleteBook(event, "finished", book['identifier'])}>
                                     </ListBookCard>)}
                             </div>
-                        
                             <div style={{borderColor: "#350888", borderStyle: "solid"}} className="d-flex flex-column align-items-center myCol col">
                                 <h3>Plan to Read</h3>
                                 {typeof wishList == 'undefined' ? <h5>No favorites</h5> : wishList.map(book => 
@@ -214,5 +191,4 @@ export default function MyBooks() {
             </form>
         </div>
     )
-
 }

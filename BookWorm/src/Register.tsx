@@ -57,17 +57,9 @@ export default function Register() {
             .then((regRes) => {
                 if(regRes.data.success) {
                     axios.post("http://localhost:3000/log-in", { email, password })
-                    // .then((res) => {
-                    //     axios
-                    //     .put("http://localhost:8080/profile/archive")
-                    //     .catch((error) => {
-                    //         console.log(error.response.data.error);
-                    //     });
-                    // })
                     .then((logRes) => {
                         if (logRes.data.success) {
                             localStorage.setItem("jwt", logRes.data.jwt);
-                            // console.log(res.data.jwt)
                             navigate("/home");
                         }
                     })
@@ -122,10 +114,6 @@ export default function Register() {
                     <input type="password" className="form-control" id="confirmPw" value={confirmPassword}
                         onChange={handleChange(setConfirmPassword)} required/>
                 </div>
-                {/* <div className="mb-3 form-check">
-                    <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-                    <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
-                </div> */}
                 <div className="d-flex">
                     <button type="submit" className="btn mx-3">Create Account</button>
                     <Link type="button" to="/" className="btn">Back to Login</Link>

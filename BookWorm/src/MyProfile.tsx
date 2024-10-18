@@ -13,9 +13,8 @@ export default function MyProfile() {
         if(localStorage.getItem("jwt")) {
             let temp = localStorage.getItem("jwt")
             setJwt(temp);
-            // console.log(jwt)
         } else {
-            console.log("You are not signed in.");
+            alert("You are not signed in.");
             return;
         }
     }
@@ -24,8 +23,6 @@ export default function MyProfile() {
     const goToPage = (event: any) => {
         event.preventDefault();
         acquireJwt();
-        // console.log(jwt)
-        // console.log(event.target.id)
         let page = "";
         switch(event.target.id) {
             case "searchBooksBtn":
@@ -56,9 +53,6 @@ export default function MyProfile() {
     };
     
     function updateUser(event: any, attribute: String) {
-        // console.log(event.target);
-        // console.log(attribute);
-        // console.log(event.target.previousElementSibling.value);
         event.preventDefault();
         acquireJwt();
         const value = event.target.previousElementSibling.value;
@@ -86,8 +80,6 @@ export default function MyProfile() {
         acquireJwt();
         const newPassword = event.target.previousElementSibling.value;
         const currentPassword = event.target.previousElementSibling.previousElementSibling.value;
-        // console.log(currentPassword);
-        // console.log(newPassword);
         if(!(/\S/.test(currentPassword)) || !(/\S/.test(newPassword)) || 
             (currentPassword.length < 7) || (newPassword.length < 7) ||
             (currentPassword === newPassword)) {
@@ -114,13 +106,11 @@ export default function MyProfile() {
     },[])
 
     useEffect(() => {
-        // console.log(jwt)
         if(jwt) { 
             axios
                 .get("http://localhost:3000/user-data", {headers: {"authorization": "Bearer " + jwt}})
                 .then((res) => {
                     if (res.data.success) {
-                        // console.log(res.data.data[0]);
                         setUserData(res.data.data[0]);
                     } 
                 })
@@ -135,7 +125,6 @@ export default function MyProfile() {
             <div className="d-flex flex-column align-items-center py-4 w-75">
                 <nav className="navbar d-flex w-100">
                     <form className="container-fluid justify-content-center">
-                        {/* <button className="btn btn-outline-success me-3" type="button">My Books</button> */}
                         <Link type="button" onClick={goToPage} className="btn me-3" to={'/home'} id="searchBooksBtn">Search Books</Link>
                         <Link type="button" onClick={goToPage} className="btn me-3" to={'/my-books'} id="myBooksBtn">My Books</Link>
                         <Link type="button" onClick={goToPage} className="btn" to={''} id="signOutBtn">Sign Out</Link>

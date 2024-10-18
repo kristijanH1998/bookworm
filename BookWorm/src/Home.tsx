@@ -3,9 +3,6 @@ import axios from 'axios'
 import React from 'react';
 import { useState, useEffect } from "react";
 import BookCard from "./elementaryComponents/bookCard.tsx";
-// import google from "@googleapis/books"
-// var books = require("@googleapis/books")
-// import books from "@googleapis/books"
 declare var google: any;
 export default function Home() {
     const [searchPlaceholder, setSearchPlaceholder] = useState("title");
@@ -22,13 +19,11 @@ export default function Home() {
         script.type = "text/javascript";
         script.addEventListener('load', () => setScriptLoaded(true));
         document.body.appendChild(script);
-        // console.log(Object.getOwnPropertyNames(google.books))
     },[])
 
     useEffect(() => {
         if(!scriptLoaded) return;
         google.books.load();
-        // initialize('ISBN:0738531367');
     }, [scriptLoaded]);
 
     function alertNotFound() {
@@ -38,22 +33,17 @@ export default function Home() {
     useEffect(() => {
         if(jwt && page >= 0) {
             acquireJwt();
-            // console.log(searchPhrase)
             axios
                 .get("http://localhost:3000/search-books", {headers: {"authorization": "Bearer " + jwt}, params: {"search-terms": searchPhrase, criteria: searchPlaceholder, page: page * 10}})
                 .then((res) => {
                     if (res.data.success) {
-                        // console.log(res.data.data.items)
-                        // console.log(typeof res.data.data.items)
                         setBookList(res.data.data.items)
-                        // console.log(bookList)
                     } 
                 })
                 .catch((error) => {
                     console.log(error.response.data.error)
                 });
         }
-        // console.log(page)
     }, [page])
 
     //makes viewer canvas load contents of a book whose identifier number was received as parameter 'identifier'
@@ -73,7 +63,6 @@ export default function Home() {
         if(localStorage.getItem("jwt")) {
             let temp = localStorage.getItem("jwt")
             setJwt(temp);
-            // console.log(jwt)
         } else {
             console.log("You are not signed in.");
             return;
@@ -81,7 +70,6 @@ export default function Home() {
     }
 
     const onRadioChange = (e: any) => {
-        // e.preventDefault();
         setSearchPlaceholder(e.target.value)
     }
 
@@ -94,8 +82,6 @@ export default function Home() {
     const goToPage = (event: any) => {
         event.preventDefault();
         acquireJwt();
-        // console.log(jwt)
-        // console.log(event.target.id)
         let page = "";
         switch(event.target.id) {
             case "myBooksBtn":
@@ -129,15 +115,11 @@ export default function Home() {
     const handleSearch = (event: any) => {
         event.preventDefault();
         acquireJwt();
-        // console.log(searchPhrase)
         axios
             .get("http://localhost:3000/search-books", {headers: {"authorization": "Bearer " + jwt}, params: {"search-terms": searchPhrase, criteria: searchPlaceholder, page: page * 10}})
             .then((res) => {
                 if (res.data.success) {
-                    // console.log(res.data.data.items)
-                    // console.log(typeof res.data.data.items)
                     setBookList(res.data.data.items)
-                    // console.log(bookList)
                     document.getElementById("pagingBtns")?.classList.remove("d-none");
                     document.getElementById("pagingBtns")?.classList.add("d-block");
                 } 
@@ -145,34 +127,25 @@ export default function Home() {
             .catch((error) => {
                 console.log(error.response.data.error)
             });
-        // initialize();
     };
 
     //runs when Next and Previous buttons are clicked, to fetch next or previous group of 10 output results (from Google Books API)
     const updatePage = (event: any) => {
         event.preventDefault();
-        // console.log(event.target.id);
         if(event.target.id == "prevBtn") {
-            // console.log("prev")
             if(page > 0) {
                 setPage(page - 1);
             }
         } else {
-            // console.log("next")
             if(bookList.length == 10) {
                 setPage(page + 1);
-
             }
         }
-        // handleSearch(event);
     }
 
     const addToList = (event: any, title: any, author: any, publisher: any, year: any, identifier: any, thumbnail: any) => {
-        // console.log(title,author,publisher,year,identifier,thumbnail);
         event.preventDefault();
         acquireJwt();
-        // console.log(jwt);
-        // console.log(event.currentTarget.id)
         let btn = event.currentTarget.id;
         let table = "";
         if(btn == "favBtn"){
@@ -203,7 +176,6 @@ export default function Home() {
             <div className="d-flex flex-column justify-content-around align-items-center w-100">
                 <nav className="navbar d-flex w-75">
                     <form className="container-fluid justify-content-center">
-                        {/* <button className="btn btn-outline-success me-3" type="button">My Books</button> */}
                         <Link type="button" onClick={goToPage} className="btn me-3" to={'/my-books'} id="myBooksBtn">My Books</Link>
                         <Link type="button" onClick={goToPage} className="btn me-3" to={'/my-profile'} id="myProfileBtn">My Profile</Link>
                         <Link type="button" onClick={goToPage} className="btn" to={''} id="signOutBtn">Sign Out</Link>
