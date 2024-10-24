@@ -28,7 +28,7 @@ This issue was mitigated by adding the following lines: <br>
 ``` 
 <script type="text/javascript" src="https://www.google.com/books/jsapi.js"></script></xmp>
 ```
-in index.html, and\
+in index.html, and:
 ```
 declare var google: any; 
 ```
@@ -41,6 +41,41 @@ document.body.appendChild(script);
 ```
 it was necessary to also include the jsapi.js script in the script tag in index.html, and have 'declare var google: any;' in Home.tsx, as shown above.
 
+* Another issue happened in this segment of code in Home.tsx (Search books webpage):
+```
+          "useEffect(() => {
+                  if(page >= 0) {
+                      acquireJwt();
+                      // console.log(searchPhrase)
+                      axios
+                          .get("http://localhost:3000/search-books", {
+                            headers: {"authorization": "Bearer " + jwt}, 
+                            params: {"search-terms": searchPhrase, criteria: searchPlaceholder, page: page * 10}})
+                          .then((res) => {
+                              if (res.data.success) {
+                                  // console.log(res.data.data.items)
+                                  // console.log(typeof res.data.data.items)
+                                  setBookList(res.data.data.items)
+                                  console.log(bookList)
+                              } 
+                          })
+                          .catch((error) => {
+                              console.log(error.response.data.error)
+                          });
+                  }
+                  console.log(page)
+               
+              }, [page])" 
+```        
+This threw an error from the backend complaining about jwt key not being provided, 
+because jwt key could not be fetched from local storage before /search-books endpoint is called, 
+as it is called immediately on page load since page=0 right from the start. 
+This made it impossible to send the /search-books request above whenever the condition page>=0 was 
+true; it was only functional when page>0 condition was required, since by the time user
+clicks on 'Next' button and increments value of page, jwt is already fetched from local storage and 
+available, and endpoint request can be successful. This bug was fixed by including 'jwt' as 
+condition in the if statement (like this: "if(jwt && page >= 0)"), since jwt was now first checked 
+for value inside it and whether it was undefined before the /search-books endpoint request is sent.
 #### Features to be implemented in the future
 
 #### Motivation
