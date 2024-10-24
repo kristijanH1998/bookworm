@@ -26,18 +26,20 @@ BookWorm - full-stack solo project for Bay Valley Tech Code Academy
 * A particularly challenging part of development was including Google Books Embedded API viewer canvas on the Search Books page: TypeScript compiler initially threw errors indicating it does not recognize 'google' in 'google.books.load();' with messages 'Cannot find name 'google'' and 'google.books.load is not a function', and other errors with 'google' object's associated functions and classes ('.books' class, 'load()' method, etc.). 
 This issue was mitigated by adding the following lines: <br>
 ``` 
-<script type="text/javascript" src="https://www.google.com/books/jsapi.js"></script></xmp> in index.html, and\
-declare var google: any; in Home.tsx;\
-it is not enough to just write these lines of code in Home.tsx before calling 'google.books.load();':
-
+<script type="text/javascript" src="https://www.google.com/books/jsapi.js"></script></xmp>
+```
+in index.html, and\
+```
+declare var google: any; 
+```
+in Home.tsx; It is not enough to just write these lines of code in Home.tsx before calling 'google.books.load();':
+```
 const script = document.createElement('script');
 script.src = "https://www.google.com/books/jsapi.js";
 script.type = "text/javascript"
 document.body.appendChild(script);
-
-it was necessary to also include the jsapi.js script in the script tag in index.html, and have 'declare var google: any;' in Home.tsx, as shown above.
-
 ```
+it was necessary to also include the jsapi.js script in the script tag in index.html, and have 'declare var google: any;' in Home.tsx, as shown above.
 
 #### Features to be implemented in the future
 
