@@ -43,29 +43,28 @@ it was necessary to also include the jsapi.js script in the script tag in index.
 
 * Another issue happened in this segment of code in Home.tsx (Search books webpage):
 ```
-          "useEffect(() => {
-                  if(page >= 0) {
-                      acquireJwt();
-                      // console.log(searchPhrase)
-                      axios
-                          .get("http://localhost:3000/search-books", {
-                            headers: {"authorization": "Bearer " + jwt}, 
-                            params: {"search-terms": searchPhrase, criteria: searchPlaceholder, page: page * 10}})
-                          .then((res) => {
-                              if (res.data.success) {
-                                  // console.log(res.data.data.items)
-                                  // console.log(typeof res.data.data.items)
-                                  setBookList(res.data.data.items)
-                                  console.log(bookList)
-                              } 
-                          })
-                          .catch((error) => {
-                              console.log(error.response.data.error)
-                          });
-                  }
-                  console.log(page)
-               
-              }, [page])" 
+        useEffect(() => {
+            if(page >= 0) {
+                acquireJwt();
+                // console.log(searchPhrase)
+                axios
+                    .get("http://localhost:3000/search-books", {
+                    headers: {"authorization": "Bearer " + jwt}, 
+                    params: {"search-terms": searchPhrase, criteria: searchPlaceholder, page: page * 10}})
+                    .then((res) => {
+                        if (res.data.success) {
+                            // console.log(res.data.data.items)
+                            // console.log(typeof res.data.data.items)
+                            setBookList(res.data.data.items)
+                            console.log(bookList)
+                        } 
+                    })
+                    .catch((error) => {
+                        console.log(error.response.data.error)
+                    });
+            }
+            console.log(page)
+        }, [page]) 
 ```        
 This threw an error from the backend complaining about jwt key not being provided, 
 because jwt key could not be fetched from local storage before /search-books endpoint is called, 
@@ -76,11 +75,41 @@ clicks on 'Next' button and increments value of page, jwt is already fetched fro
 available, and endpoint request can be successful. This bug was fixed by including 'jwt' as 
 condition in the if statement (like this: "if(jwt && page >= 0)"), since jwt was now first checked 
 for value inside it and whether it was undefined before the /search-books endpoint request is sent.
+
+* Another obstacle was when GET HTTP requests worked normally, but POST HTTP requests would send 
+authorization error saying the authorization header content was undefined. This was fixed by 
+following rules for POST request type, stating that Authorization header must come after the 
+data parameter, unlike in GET type requests.
+
 #### Features to be implemented in the future
 
 #### Motivation
+* I decided to create this application to get more hands-on experience in full-stack 
+software development, to explore the capabilities of integrating external (third-party) APIs
+into my own applications, and to finish the Bay Valley Tech Code Academy learning path on which
+I embarked in October 2023, with hopes of eventually obtaining a full-stack software development 
+certificate. I saw this as a milestone which, once achieved, would enrich my CV and potentially 
+kick-start my professional software engineering career.
 
-#### Things I learned
+#### Things I Learned
+* Work on this app has taught me how much time and effort is required to build a full-stack
+software project from ground up on one's own, without help from others. I had to be designer, developer,
+engineer, database administrator, tester, and my own supervisor in order to bring this project to 
+completion.
+
+* I learned how stark a difference there can be between initial software project plans, functional 
+outlines and design ideas, and actual implementation and practical realization of those plans, that is, the finished product.
+BookWorm was according to my starting expectations supposed to incorporate OpenAI API feature which would answer
+user's questions about books they are reading, a forum for users where they can share their opinions on books, 
+and other elements which have not been implemented due to time constraints. Some day I might revisit this
+project and include all those extra elements into it.
+
+* Decision to build software in technologies and tools that require more technical considerations and
+higher expertise should be made carefully. At a certain point of this project I decided to transform the 
+frontend code from JavaScript to TypeScript, so to increase my knowledge of TypeScript development. I ended
+up having to address a lot of data type issues with function parameters and React component props, and some
+difficult to solve bugs which slowed the project down. But I think that learning a new skill is very
+important in the start of one's career, and challenges should be welcomed, not feared.
 
 ## How to Run the Project
 ### Frontend Installation
