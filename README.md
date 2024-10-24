@@ -5,7 +5,6 @@ BookWorm - full-stack solo project for Bay Valley Tech Code Academy
 - [Description](#description)
 - [How to Run the Project](#how-to-run-the-project)
 - [How to Use the Project](#how-to-use-the-project)
-- [Tests](#tests)
 - [Documentation](#documentation)
 
 ## Description
@@ -116,6 +115,9 @@ important in the start of one's career, and challenges should be welcomed, not f
 
 ## How to Use the Project
 
-## Tests
-
 ## Documentation
+* The repository of the Backend part of the project can be found [here](https://github.com/kristijanH1998/bookworm-backend.git)
+* Developer log for this project can be found [here](https://docs.google.com/document/d/1ieDdM0txky0wxEZ3w_PPIUdPI_pAFzgeKAzslnP2bsw/edit?usp=sharing)
+* The Wireframes I made in Figma for this project can be found by clicking on [this link](https://www.figma.com/design/HyaA7HkQP4oVYABsiWcimn/BookWorm-Wireframe?node-id=0-1&t=0i8CE6GfiTgFVYkF-1)
+* Functional Design Outline for BookWorm: [link](https://docs.google.com/document/d/1XoP50WMfJ7WNict0mYizXaeUk4Cqgh8SxsYhh9SBCIw/edit?usp=sharing)
+* More screenshots of BookWorm can be seen on my [portfolio website](https://kristijanh1998.github.io/bookworm.html)
