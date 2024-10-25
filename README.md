@@ -118,7 +118,7 @@ Assuming that all the steps for installing the environment for Backend part of B
 3. Type and run the command 'npm i' to install all necessary packages (including software for Vite and React.js)
 4. If you have not already started running the server for the Backend part of the project, do that now by opening Backend repository in another VS Code window (with its own Bash terminal instance), and run it by typing 'nodemon index.cjs' in the terminal
 5. In the VS Code window for the Frontend part, type and run the command 'npm run dev' to start the local server for Vite with React. You should see this in your terminal:
-![terminal after npm run dev (frontend)](/screenshots/npm-run-dev-frontend.jpg?raw=true "terminal after npm run dev (frontend)")
+![terminal after npm run dev (frontend)](/screenshots-readme/npm-run-dev-frontend.png?raw=true "terminal after npm run dev (frontend)")
 6. Copy the 'http://localhost:5173/' URL address and paste it in the address bar of your internet browser. You should see the BookWorm's Login page appear.
 
 ## How to Use the Project
