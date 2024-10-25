@@ -138,8 +138,11 @@ This is an Embedded Viewer from Google Books that lets you scroll up/down, zoom 
 ![My Books](/screenshots-readme/my-books.png?raw=true "My Books page")
 As you can see, three categories of books are shown in scrollable lists, and it is possible to remove books from each category by clicking on the trash icon in top right corner of each record. Removing a book will show this message:
 ![Book Deleted](/screenshots-readme/my-books-delete.png?raw=true "Book deleted on My Books")
-
-
+* User can see their account information by clicking on My Profile button, which navigates to My Profile page shown below:
+![My Profile](/screenshots-readme/my-profile.png?raw=true "My Profile page")
+* To update account data, enter a valid value to the right of an attribute you want to change, and then click on Update. This will return the 'User successfully updated.' message:
+![User Updated](/screenshots-readme/user-updated.png?raw=true "User Updated message")
+* To Sign Out of BookWorm, click on Sign Out on the right side of the navigation bar at the top. This action will safely log you out of the application.
 
 ## Documentation
 * The repository of the Backend part of the project can be found [here](https://github.com/kristijanH1998/bookworm-backend.git)
