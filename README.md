@@ -112,6 +112,14 @@ important in the start of one's career, and challenges should be welcomed, not f
 
 ## How to Run the Project
 ### Frontend Installation
+Assuming that all the steps for installing the environment for Backend part of BookWorm have been finished, the user should already have VS Code, Node.js, Git, and extensions for HTML/CSS/JavaScript installed on their machine, as well as MySQL (or MariaDB) and MySQL Workbench. Next, follow these steps:
+1. Choose the location (directory) for the project's frontend repository, navigate to it with 'cd [directory-name]' terminal command and inside of it clone the project's frontend repository by running the command 'git clone https://github.com/kristijanH1998/bookworm.git' in your terminal
+2. Open the newly cloned repository folder in VS Code and open the Bash shell (terminal). Navigate to 'BookWorm' folder by running 'cd BookWorm' in your terminal
+3. Type and run the command 'npm i' to install all necessary packages (including software for Vite and React.js)
+4. If you have not already started running the server for the Backend part of the project, do that now by opening Backend repository in another VS Code window (with its own Bash terminal instance), and run it by typing 'nodemon index.cjs' in the terminal
+5. In the VS Code window for the Frontend part, type and run the command 'npm run dev' to start the local server for Vite with React. You should see this in your terminal:
+![terminal after npm run dev (frontend)](/screenshots/npm-run-dev-frontend.jpg?raw=true "terminal after npm run dev (frontend)")
+6. Copy the 'http://localhost:5173/' URL address and paste it in the address bar of your internet browser. You should see the BookWorm's Login page appear.
 
 ## How to Use the Project
 
