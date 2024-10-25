@@ -124,13 +124,22 @@ Assuming that all the steps for installing the environment for Backend part of B
 ## How to Use the Project
 * After backend server has been run, and the frontend server has been started by pasting 'http://localhost:5173/' URL address in the address bar in the browser, you should see the Login page interface:
 ![Login page](/screenshots-readme/login.png?raw=true "Login page")
-Here enter your email address and password if your account exists, if not create a new account by clicking 'Create Account', which will open Register page:
+Here enter your email address and password if your account exists, if not create a new account by clicking 'Register', which will open Register page:
 ![Register page](/screenshots-readme/register.png?raw=true "Register page")
 Make sure to enter username that is unique (is not already used by another user), and email address that has a valid email form. Also, passwords need to match.
 * Once logged in, you will see the Home Page for searching book records from Google Books database. You can search by title, author, or ISBN of the book, and once the desired search phrase or value has been entered, click the Search button and you should see a list of records from Google Books like the one below:
 ![Search Books List](/screenshots-readme/home-page-list.png?raw=true "Home page")
 * Find a book record whose text you want to read, and click on Read Now button in top right corner. Your interface should change into this:
 ![Embedded Viewer](/screenshots-readme/read-now-embedded.png?raw=true "Embedded Viewer window")
+This is an Embedded Viewer from Google Books that lets you scroll up/down, zoom in/out and read the text you selected in its entirety.
+* On the Search Books (Home) page, you can also add each book record into one of three special categories: Favorites, Finished Reading, and Wishlist. By clicking on any of the three buttons corresponding to these categories, the selected book will be placed into that particular category on the My Books page. Clicking on Favorite for some book will return this message:
+![Favorite](/screenshots-readme/favorite.png?raw=true "Favoriting a book")
+* To see lists of favorites, read books, and reading wishlist, navigate to My Books by clicking My Books button in the navigation bar at the top. You should now be taken to the My Books page:
+![My Books](/screenshots-readme/my-books.png?raw=true "My Books page")
+As you can see, three categories of books are shown in scrollable lists, and it is possible to remove books from each category by clicking on the trash icon in top right corner of each record. Removing a book will show this message:
+![Book Deleted](/screenshots-readme/my-books-delete.png?raw=true "Book deleted on My Books")
+
+
 
 ## Documentation
 * The repository of the Backend part of the project can be found [here](https://github.com/kristijanH1998/bookworm-backend.git)
