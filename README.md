@@ -111,6 +111,8 @@ difficult to solve bugs which slowed the project down. But I think that learning
 important in the start of one's career, and challenges should be welcomed, not feared.
 
 ## How to Run the Project
+* ***Important:*** Please first follow installation instructions for the Backend part of this project, which can be found [here](https://github.com/kristijanH1998/bookworm-backend?tab=readme-ov-file#how-to-run-the-project). Once that is completed, proceed to Frontend installation steps described below.
+
 ### Frontend Installation
 Assuming that all the steps for installing the environment for Backend part of BookWorm have been finished, the user should already have VS Code, Node.js, Git, and extensions for HTML/CSS/JavaScript installed on their machine, as well as MySQL (or MariaDB) and MySQL Workbench. Next, follow these steps:
 1. Choose the location (directory) for the project's frontend repository, navigate to it with 'cd [directory-name]' terminal command and inside of it clone the project's frontend repository by running the command 'git clone https://github.com/kristijanH1998/bookworm.git' in your terminal
